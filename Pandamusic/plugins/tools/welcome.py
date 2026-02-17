@@ -7,7 +7,7 @@ from logging import getLogger
 from Pandamusic import LOGGER
 from pyrogram.types import Message
 from Pandamusic.misc import SUDOERS
-from Pandam usic import app
+from Pandamusic import app
 from Pandamusic.utils.database import *
 from Pandamusic.utils.database import db
 
