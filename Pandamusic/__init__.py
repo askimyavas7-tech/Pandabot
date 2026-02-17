@@ -19,42 +19,80 @@
 # Contact for permissions:
 # Email: tzkgaming2019@gmail.com
 
+from __future__ import annotations
 
-from Pandamusic.core.bot import Nand
-from Pandamusic.core.dir import dirr
-from Pandamusic.core.git import git
-from Pandamusic.core.userbot import Userbot
-from Pandamusic.misc import dbb, heroku
-
+# --- logging ---
 from .logging import LOGGER
 
-dirr()
-git()
-dbb()
-heroku()
+# --- core imports ---
+from Pandamusic.core.bot import Nand
+from Pandamusic.core.userbot import Userbot
 
+# --- startup helpers (safe) ---
+from Pandamusic.core.dir import dirr
+from Pandamusic.core.git import git
+from Pandamusic.misc import dbb, heroku
+
+
+def _safe_bootstrap():
+    """
+    Bu fonksiyonlar import anında patlarsa bot hiç açılmaz.
+    O yüzden hepsini safe çalıştırıyoruz.
+    """
+    for fn, name in [
+        (dirr, "dirr"),
+        (git, "git"),
+        (dbb, "dbb"),
+        (heroku, "heroku"),
+    ]:
+        try:
+            fn()
+        except Exception as e:
+            # Logla ama botu öldürme
+            try:
+                LOGGER("Pandamusic").warning(f"Bootstrap {name} skipped: {e}")
+            except Exception:
+                # LOGGER fonksiyon değilse diye ekstra koruma
+                pass
+
+
+_safe_bootstrap()
+
+# --- create clients ---
 app = Nand()
 userbot = Userbot()
 
+# --- platforms: explicit import (no star import) ---
+try:
+    from .platforms import (
+        AppleAPI,
+        CarbonAPI,
+        SoundAPI,
+        SpotifyAPI,
+        RessoAPI,
+        TeleAPI,
+        YouTubeAPI,
+    )
 
-from .platforms import *
+    Apple = AppleAPI()
+    Carbon = CarbonAPI()
+    SoundCloud = SoundAPI()
+    Spotify = SpotifyAPI()
+    Resso = RessoAPI()
+    Telegram = TeleAPI()
+    YouTube = YouTubeAPI()
 
-Apple = AppleAPI()
-Carbon = CarbonAPI()
-SoundCloud = SoundAPI()
-Spotify = SpotifyAPI()
-Resso = RessoAPI()
-Telegram = TeleAPI()
-YouTube = YouTubeAPI()
+except Exception as e:
+    # Platformlar opsiyonel olsun; yoksa bot yine de açılabilsin
+    try:
+        LOGGER("Pandamusic").warning(f"Platforms not loaded: {e}")
+    except Exception:
+        pass
 
-
-# ©️ Copyright Reserved - @HANTHAR999 HAN THAR
-
-# ===========================================
-# ©️ 2026 HAN THAR
-# 🔗 GitHub : https://github.com/tzkgaming2019-creator/Pandabot
-# 📢 Telegram Channel : https://t.me/myanmarbot_music
-# ===========================================
-
-
-# ❤️ Love From myanmarbot_music 
+    Apple = None
+    Carbon = None
+    SoundCloud = None
+    Spotify = None
+    Resso = None
+    Telegram = None
+    YouTube = None
