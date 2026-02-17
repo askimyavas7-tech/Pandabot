@@ -1,6 +1,5 @@
 FROM nikolaik/python-nodejs:python3.10-nodejs20
 
-# ffmpeg + ffprobe (static)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl xz-utils ca-certificates \
     && rm -rf /var/lib/apt/lists/*
@@ -16,15 +15,10 @@ RUN curl -L https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-stati
 WORKDIR /app
 COPY . /app
 
-# requirements
 RUN pip3 install --no-cache-dir -U pip \
     && pip3 install --no-cache-dir -r requirements.txt
 
 # start dosyası varsa: CRLF temizle + çalıştırılabilir yap
-# yoksa: python modül ile başlat
 RUN if [ -f start ]; then sed -i 's/\r$//' start && chmod +x start; fi
 
-# EN GARANTİ BAŞLATMA:
-# - start dosyası varsa onu çalıştırır
-# - yoksa direkt python3 -m Pandamusic çalıştırır
 CMD ["bash", "-lc", "if [ -f ./start ]; then ./start; else python3 -m Pandamusic; fi"]
