@@ -1,15 +1,30 @@
 FROM nikolaik/python-nodejs:python3.10-nodejs20
 
+# ffmpeg + ffprobe (static)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl xz-utils ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN curl -L https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz \
-    -o ffmpeg.tar.xz && \
-    tar -xJf ffmpeg.tar.xz && \
-    mv ffmpeg-*-static/ffmpeg /usr/local/bin/ && \
-    mv ffmpeg-*-static/ffprobe /usr/local/bin/ && \
-    rm -rf ffmpeg*
+    -o /tmp/ffmpeg.tar.xz \
+    && tar -xJf /tmp/ffmpeg.tar.xz -C /tmp \
+    && mv /tmp/ffmpeg-*-static/ffmpeg /usr/local/bin/ffmpeg \
+    && mv /tmp/ffmpeg-*-static/ffprobe /usr/local/bin/ffprobe \
+    && chmod +x /usr/local/bin/ffmpeg /usr/local/bin/ffprobe \
+    && rm -rf /tmp/ffmpeg*
 
-COPY . /app/
-WORKDIR /app/
+WORKDIR /app
+COPY . /app
 
-RUN pip3 install --no-cache-dir -r requirements.txt
+# requirements
+RUN pip3 install --no-cache-dir -U pip \
+    && pip3 install --no-cache-dir -r requirements.txt
 
-CMD ["bash", "start"]
+# start dosyası varsa: CRLF temizle + çalıştırılabilir yap
+# yoksa: python modül ile başlat
+RUN if [ -f start ]; then sed -i 's/\r$//' start && chmod +x start; fi
+
+# EN GARANTİ BAŞLATMA:
+# - start dosyası varsa onu çalıştırır
+# - yoksa direkt python3 -m Pandamusic çalıştırır
+CMD ["bash", "-lc", "if [ -f ./start ]; then ./start; else python3 -m Pandamusic; fi"]
