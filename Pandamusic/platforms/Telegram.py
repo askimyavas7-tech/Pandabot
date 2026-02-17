@@ -28,8 +28,8 @@ from typing import Union
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Voice
 
 import config
-from ShrutiMusic import app
-from ShrutiMusic.utils.formatters import (
+from Pandamusic import app
+from Pandamusic.utils.formatters import (
     check_duration,
     convert_bytes,
     get_readable_time,

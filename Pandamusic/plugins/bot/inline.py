@@ -26,8 +26,8 @@ from pyrogram.types import (
     InlineQueryResultPhoto,
 )
 from py_yt import VideosSearch
-from ShrutiMusic import app
-from ShrutiMusic.utils.inlinequery import answer
+from Pandamusic import app
+from Pandamusic.utils.inlinequery import answer
 from config import BANNED_USERS
 
 

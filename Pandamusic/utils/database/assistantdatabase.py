@@ -22,8 +22,8 @@
 
 import random
 
-from ShrutiMusic import userbot
-from ShrutiMusic.core.mongo import mongodb
+from Pandamusic import userbot
+from Pandamusic.core.mongo import mongodb
 
 db = mongodb.assistants
 

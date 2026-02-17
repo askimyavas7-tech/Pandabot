@@ -27,12 +27,12 @@ from pyrogram import filters
 from pyrogram.enums import ChatMembersFilter
 from pyrogram.types import CallbackQuery, Message
 
-from ShrutiMusic import app
-from ShrutiMusic.core.call import Nand
-from ShrutiMusic.misc import db
-from ShrutiMusic.utils.database import get_assistant, get_authuser_names, get_cmode
-from ShrutiMusic.utils.decorators import ActualAdminCB, AdminActual, language
-from ShrutiMusic.utils.formatters import alpha_to_int, get_readable_time
+from Pandamusic import app
+from Pandamusic.core.call import Nand
+from Pandamusic.misc import db
+from Pandamusic.utils.database import get_assistant, get_authuser_names, get_cmode
+from Pandamusic.utils.decorators import ActualAdminCB, AdminActual, language
+from Pandamusic.utils.formatters import alpha_to_int, get_readable_time
 from config import BANNED_USERS, adminlist, lyrical
 
 rel = {}

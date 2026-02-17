@@ -23,13 +23,13 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from ShrutiMusic import app
-from ShrutiMusic.core.call import Nand
-from ShrutiMusic.misc import SUDOERS, db
-from ShrutiMusic.utils import AdminRightsCheck
-from ShrutiMusic.utils.database import is_active_chat, is_nonadmin_chat
-from ShrutiMusic.utils.decorators.language import languageCB
-from ShrutiMusic.utils.inline import close_markup, speed_markup
+from Pandamusic import app
+from Pandamusic.core.call import Nand
+from Pandamusic.misc import SUDOERS, db
+from Pandamusic.utils import AdminRightsCheck
+from Pandamusic.utils.database import is_active_chat, is_nonadmin_chat
+from Pandamusic.utils.decorators.language import languageCB
+from Pandamusic.utils.inline import close_markup, speed_markup
 from config import BANNED_USERS, adminlist
 
 checker = []

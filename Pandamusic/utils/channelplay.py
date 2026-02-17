@@ -20,8 +20,8 @@
 # Email: badboy809075@gmail.com
 
 
-from ShrutiMusic import app
-from ShrutiMusic.utils.database import get_cmode
+from Pandamusic import app
+from Pandamusic.utils.database import get_cmode
 
 
 async def get_channeplayCB(_, command, CallbackQuery):

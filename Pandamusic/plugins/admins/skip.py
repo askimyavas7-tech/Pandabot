@@ -24,14 +24,14 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 import config
-from ShrutiMusic import YouTube, app
-from ShrutiMusic.core.call import Nand
-from ShrutiMusic.misc import db
-from ShrutiMusic.utils.database import get_loop
-from ShrutiMusic.utils.decorators import AdminRightsCheck
-from ShrutiMusic.utils.inline import close_markup, stream_markup
-from ShrutiMusic.utils.stream.autoclear import auto_clean
-from ShrutiMusic.utils.thumbnails import gen_thumb
+from Pandamusic import YouTube, app
+from Pandamusic.core.call import Nand
+from Pandam usic.misc import db
+from Pandamusic.utils.database import get_loop
+from Pandamusic.utils.decorators import AdminRightsCheck
+from Pandamusic.utils.inline import close_markup, stream_markup
+from Pandamusic.utils.stream.autoclear import auto_clean
+from Pandamusic.utils.thumbnails import gen_thumb
 from config import BANNED_USERS
 
 

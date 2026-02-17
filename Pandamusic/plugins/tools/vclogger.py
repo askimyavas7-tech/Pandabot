@@ -7,9 +7,9 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from pyrogram.raw import functions
-from ShrutiMusic import app
-from ShrutiMusic.utils.database import get_assistant
-from ShrutiMusic.core.mongo import mongodb
+from Pandamusic import app
+from Pandamusic.utils.database import get_assistant
+from Pandamusic.core.mongo import mongodb
 
 """
 ░█▀█░█▀▄░█▀█░█▀█░█▀▄░▀█▀░█▀▀░▀█▀░█▀█░█▀▄░█░█░░░█░░░▀█▀░█▀▀░█▀▀░█▀█░█▀▀░█▀▀

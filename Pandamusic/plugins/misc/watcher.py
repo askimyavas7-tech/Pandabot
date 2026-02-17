@@ -23,8 +23,8 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from ShrutiMusic import app
-from ShrutiMusic.core.call import Nand
+from Pandamusic import app
+from Pandamusic.core.call import Nand
 
 welcome = 20
 close = 30

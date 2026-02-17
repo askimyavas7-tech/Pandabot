@@ -20,7 +20,7 @@
 # Email: badboy809075@gmail.com
 
 
-from ShrutiMusic import app
+from Pandamusic import app
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram import filters
 

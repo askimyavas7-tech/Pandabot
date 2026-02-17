@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Nand Yaduwanshi <NoxxOP>
+# Copyright (c) 2026 HANTHAR
 # Location: Supaul, Bihar
 #
 # All rights reserved.
@@ -17,7 +17,7 @@
 # - Selling or using commercially
 #
 # Contact for permissions:
-# Email: badboy809075@gmail.com
+# Email: tzkgaming2019@gmail.com
 
 
 import glob
@@ -41,13 +41,13 @@ ALL_MODULES = sorted(__list_all_modules())
 __all__ = ALL_MODULES + ["ALL_MODULES"]
 
 
-# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
+# ©️ Copyright Reserved - @HANTHAR999 HAN THAR
 
 # ===========================================
-# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
-# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
-# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ©️ 2026 HAN THAR
+# 🔗 GitHub : https://github.com/tzkgaming2019-creator/Pandabot
+# 📢 Telegram Channel : https://t.me/myanmarbot_music
 # ===========================================
 
 
-# ❤️ Love From ShrutiBots 
+# ❤️ Love From  myanmarbot_music

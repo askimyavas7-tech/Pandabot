@@ -24,9 +24,9 @@ from pyrogram import filters
 from pyrogram.enums import ChatMembersFilter, ChatMemberStatus, ChatType
 from pyrogram.types import Message
 
-from ShrutiMusic import app
-from ShrutiMusic.utils.database import set_cmode
-from ShrutiMusic.utils.decorators.admins import AdminActual
+from Pandamusic import app
+from Pandamusic.utils.database import set_cmode
+from Pandamusic.utils.decorators.admins import AdminActual
 from config import BANNED_USERS
 
 

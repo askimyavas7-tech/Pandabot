@@ -4,17 +4,17 @@ from PIL import ImageDraw, Image, ImageFont, ImageChops
 from pyrogram import *
 from pyrogram.types import *
 from logging import getLogger
-from ShrutiMusic import LOGGER
+from Pandamusic import LOGGER
 from pyrogram.types import Message
-from ShrutiMusic.misc import SUDOERS
-from ShrutiMusic import app
-from ShrutiMusic.utils.database import *
-from ShrutiMusic.utils.database import db
+from Pandamusic.misc import SUDOERS
+from Pandam usic import app
+from Pandamusic.utils.database import *
+from Pandamusic.utils.database import db
 
 try:
     wlcm = db.welcome
 except:
-    from ShrutiMusic.utils.database import welcome as wlcm
+    from Pandamusic.utils.database import welcome as wlcm
 
 LOGGER = getLogger(__name__)
 
@@ -38,13 +38,13 @@ def circle(pfp, size=(450, 450)):
     return pfp
 
 def welcomepic(pic, user, chat, id, uname):
-    background = Image.open("ShrutiMusic/assets/welcome.png")
+    background = Image.open("Pandamusic/assets/welcome.png")
     pfp = Image.open(pic).convert("RGBA")
     pfp = circle(pfp)
     pfp = pfp.resize((450, 450)) 
     draw = ImageDraw.Draw(background)
-    font = ImageFont.truetype('ShrutiMusic/assets/font.ttf', size=45)
-    font2 = ImageFont.truetype('ShrutiMusic/assets/font.ttf', size=90)
+    font = ImageFont.truetype('Pandamusic/assets/font.ttf', size=45)
+    font2 = ImageFont.truetype('Pandamusic/assets/font.ttf', size=90)
     draw.text((65, 250), f'NAME : {unidecode(user)}', fill="white", font=font)
     draw.text((65, 340), f'ID : {id}', fill="white", font=font)
     draw.text((65, 430), f"USERNAME : {uname}", fill="white", font=font)
@@ -104,7 +104,7 @@ async def greet_group(_, member: ChatMemberUpdated):
             user.photo.big_file_id, file_name=f"pp{user.id}.png"
         )
     except AttributeError:
-        pic = "ShrutiMusic/assets/upic.png"
+        pic = "Pandamusic/assets/upic.png"
 
     if (temp.MELCOW).get(f"welcome-{member.chat.id}") is not None:
         try:

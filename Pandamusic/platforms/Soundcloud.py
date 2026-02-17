@@ -24,7 +24,7 @@ from os import path
 
 from yt_dlp import YoutubeDL
 
-from ShrutiMusic.utils.formatters import seconds_to_min
+from Pandamusic.utils.formatters import seconds_to_min
 
 
 class SoundAPI:

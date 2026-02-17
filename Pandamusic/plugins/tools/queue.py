@@ -28,12 +28,12 @@ from pyrogram.errors import FloodWait
 from pyrogram.types import CallbackQuery, InputMediaPhoto, Message
 
 import config
-from ShrutiMusic import app
-from ShrutiMusic.misc import db
-from ShrutiMusic.utils import NandBin, get_channeplayCB, seconds_to_min
-from ShrutiMusic.utils.database import get_cmode, is_active_chat, is_music_playing
-from ShrutiMusic.utils.decorators.language import language, languageCB
-from ShrutiMusic.utils.inline import queue_back_markup, queue_markup
+from Pandamusic import app
+from Pandamusic.misc import db
+from Pandamusic.utils import NandBin, get_channeplayCB, seconds_to_min
+from Pandamusic.utils.database import get_cmode, is_active_chat, is_music_playing
+from Pandamusic.utils.decorators.language import language, languageCB
+from Pandamusic.utils.inline import queue_back_markup, queue_markup
 from config import BANNED_USERS
 
 basic = {}
@@ -187,11 +187,11 @@ async def queued_tracks(client, CallbackQuery: CallbackQuery, _):
     for x in got:
         j += 1
         if j == 1:
-            msg += f'Streaming :\n\n✨ Title : {x["title"]}\nDuration : {x["dur"]}\nBy : {x["by"]}\n\n'
+            msg += f'Streaming :\n\n✨ Title : {x["title"]}\nDuration : {x["dur"]}\nBy : {x["by"]}\n\nMADE BY: HAN THAR\n\n'
         elif j == 2:
-            msg += f'Queued :\n\n✨ Title : {x["title"]}\nDuration : {x["dur"]}\nBy : {x["by"]}\n\n'
+            msg += f'Queued :\n\n✨ Title : {x["title"]}\nDuration : {x["dur"]}\nBy : {x["by"]}\n\nMADE BY: HAN THAR\n\n'
         else:
-            msg += f'✨ Title : {x["title"]}\nDuration : {x["dur"]}\nBy : {x["by"]}\n\n'
+            msg += f'✨ Title : {x["title"]}\nDuration : {x["dur"]}\nBy : {x["by"]}\n\nMADE BY: HAN THAR\n\n'
     if "Queued" in msg:
         if len(msg) < 700:
             await asyncio.sleep(1)

@@ -25,7 +25,7 @@ import os
 from typing import Dict, List, Union
 
 import config
-from ShrutiMusic.core.mongo import mongodb
+from Pandamusic.core.mongo import mongodb
 
 channeldb = mongodb.cplaymode
 commanddb = mongodb.commands

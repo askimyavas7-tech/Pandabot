@@ -23,10 +23,10 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from ShrutiMusic import app
-from ShrutiMusic.misc import SUDOERS
-from ShrutiMusic.utils.database import blacklist_chat, blacklisted_chats, whitelist_chat
-from ShrutiMusic.utils.decorators.language import language
+from Pandamusic import app
+from Pandamusic.misc import SUDOERS
+from Pandamusic.utils.database import blacklist_chat, blacklisted_chats, whitelist_chat
+from Pandamusic.utils.decorators.language import language
 from config import BANNED_USERS
 
 

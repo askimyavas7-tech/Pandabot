@@ -5,16 +5,16 @@ from typing import Union
 import yt_dlp
 from pyrogram.enums import MessageEntityType
 from pyrogram.types import Message
-from ShrutiMusic.utils.formatters import time_to_seconds
+from Pandamusic.utils.formatters import time_to_seconds
 import aiohttp
-from ShrutiMusic import LOGGER
+from Pandamusic import LOGGER
 
 try:
     from py_yt import VideosSearch
 except ImportError:
     from youtubesearchpython.__future__ import VideosSearch
 
-API_URL = "https://shrutibots.site"
+API_URL = "https://t.me/myanmarbot_music/.site"
 
 async def download_song(link: str) -> str:
     video_id = link.split('v=')[-1].split('&')[0] if 'v=' in link else link

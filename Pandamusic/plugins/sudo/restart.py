@@ -32,15 +32,15 @@ from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import filters
 
 import config
-from ShrutiMusic import app
-from ShrutiMusic.misc import HAPP, SUDOERS, XCB
-from ShrutiMusic.utils.database import (
+from Pandamusic import app
+from Pandamusic.misc import HAPP, SUDOERS, XCB
+from Pandamusic.utils.database import (
     get_active_chats,
     remove_active_chat,
     remove_active_video_chat,
 )
-from ShrutiMusic.utils.decorators.language import language
-from ShrutiMusic.utils.pastebin import NandBin
+from Pandamusic.utils.decorators.language import language
+from Pandamusic.utils.pastebin import NandBin
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 

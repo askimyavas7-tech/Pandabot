@@ -2,7 +2,7 @@ import asyncio
 import random
 from pyrogram import filters
 from pyrogram.types import Message
-from ShrutiMusic import app
+from Pandamusic import app
 
 active_chats = {}
 
@@ -204,13 +204,13 @@ async def taghelp(_, message: Message):
     await message.reply(help_text)
 
 
-# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
+# ©️ Copyright Reserved 
 
 # ===========================================
-# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
-# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
-# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ©️ 2026
+# 🔗 GitHub : 
+# 📢 Telegram Channel : 
 # ===========================================
 
 
-# ❤️ Love From ShrutiBots
+# ❤️ Love From 

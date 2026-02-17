@@ -97,13 +97,13 @@ def heroku():
                 )
 
 
-# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
+# ©️ Copyright Reserved - HAN THAR
 
 # ===========================================
-# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
-# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
-# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ©️ 2025 HAN THAR (aka @HANTHAR999)
+# 🔗 GitHub : https://github.com/tzkgaming2019-creator/Pandabot
+# 📢 Telegram Channel : https://t.me/myanmarbot_music
 # ===========================================
 
 
-# ❤️ Love From ShrutiBots 
+# ❤️ Love From  myanmarbot_music

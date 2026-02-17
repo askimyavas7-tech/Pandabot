@@ -29,7 +29,7 @@ Telegram: https://t.me/ShrutiBots
 
 from typing import Union
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from ShrutiMusic import app
+from Pandamusic import app
 
 def help_pannel_page1(_, START: Union[bool, int] = None):
     return InlineKeyboardMarkup(

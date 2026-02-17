@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Nand Yaduwanshi <NoxxOP>
+# Copyright (c) 2026 HAN THAR
 # Location: Supaul, Bihar
 #
 # All rights reserved.
@@ -17,7 +17,7 @@
 # - Selling or using commercially
 #
 # Contact for permissions:
-# Email: badboy809075@gmail.com
+# Email: tzkgaming2019@gmail.com
 
 
 import asyncio
@@ -26,11 +26,11 @@ from pyrogram import idle
 from pyrogram.types import BotCommand
 from pytgcalls.exceptions import NoActiveGroupCall
 import config
-from ShrutiMusic import LOGGER, app, userbot
-from ShrutiMusic.core.call import Nand
-from ShrutiMusic.misc import sudo
-from ShrutiMusic.plugins import ALL_MODULES
-from ShrutiMusic.utils.database import get_banned_users, get_gbanned
+from Pandamusic import LOGGER, app, userbot
+from Pandamusic.core.call import Nand
+from Pandamusic.misc import sudo
+from Pandamusic.plugins import ALL_MODULES
+from Pandamusic.utils.database import get_banned_users, get_gbanned
 from config import BANNED_USERS
 
 COMMANDS = [
@@ -70,10 +70,10 @@ COMMANDS = [
 async def setup_bot_commands():
     try:
         await app.set_bot_commands(COMMANDS)
-        LOGGER("ShrutiMusic").info("Bot commands set successfully!")
+        LOGGER("Pandamusic").info("Bot commands set successfully!")
         
     except Exception as e:
-        LOGGER("ShrutiMusic").error(f"Failed to set bot commands: {str(e)}")
+        LOGGER("Pandamusic").error(f"Failed to set bot commands: {str(e)}")
 
 async def init():
     if (
@@ -103,9 +103,9 @@ async def init():
     await setup_bot_commands()
 
     for all_module in ALL_MODULES:
-        importlib.import_module("ShrutiMusic.plugins" + all_module)
+        importlib.import_module("Pandamusic.plugins" + all_module)
 
-    LOGGER("ShrutiMusic.plugins").info("Successfully Imported Modules...")
+    LOGGER("Pandamusic.plugins").info("Successfully Imported Modules...")
 
     await userbot.start()
     await Nand.start()
@@ -113,7 +113,7 @@ async def init():
     try:
         await Nand.stream_call("https://te.legra.ph/file/29f784eb49d230ab62e9e.mp4")
     except NoActiveGroupCall:
-        LOGGER("ShrutiMusic").error(
+        LOGGER("Pandamusic").error(
             "Please turn on the videochat of your log group\channel.\n\nStopping Bot..."
         )
         exit()
@@ -122,7 +122,7 @@ async def init():
 
     await Nand.decorators()
 
-    LOGGER("ShrutiMusic").info(
+    LOGGER("Pandamusic").info(
         "\x53\x68\x72\x75\x74\x69\x20\x4d\x75\x73\x69\x63\x20\x53\x74\x61\x72\x74\x65\x64\x20\x53\x75\x63\x63\x65\x73\x73\x66\x75\x6c\x6c\x79\x2e\x0a\x0a\x44\x6f\x6e\x27\x74\x20\x66\x6f\x72\x67\x65\x74\x20\x74\x6f\x20\x76\x69\x73\x69\x74\x20\x40\x53\x68\x72\x75\x74\x69\x42\x6f\x74\x73"
     )
 
@@ -130,19 +130,19 @@ async def init():
 
     await app.stop()
     await userbot.stop()
-    LOGGER("ShrutiMusic").info("Stopping Shruti Music Bot...🥺")
+    LOGGER("Pandamusic").info("Stopping Panda Music Bot...🥺")
 
 if __name__ == "__main__":
     asyncio.get_event_loop().run_until_complete(init())
 
 
-# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
+# ©️ Copyright Reserved - HAN THAR
 
 # ===========================================
-# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
-# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
-# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ©️ 2026 HAN THAR (@HANTHAR999)
+# 🔗 GitHub : https://github.com/tzkgaming2019-creator/Pandabot
+# 📢 Telegram Channel : https://t.me/myanmarbot_music
 # ===========================================
 
 
-# ❤️ Love From ShrutiBots
+# ❤️ Love From myanmarbot_music

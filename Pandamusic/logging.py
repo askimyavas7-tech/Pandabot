@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Nand Yaduwanshi <NoxxOP>
+# Copyright (c) 2026 HAN THAR
 # Location: Supaul, Bihar
 #
 # All rights reserved.
@@ -17,7 +17,7 @@
 # - Selling or using commercially
 #
 # Contact for permissions:
-# Email: badboy809075@gmail.com
+# Email: tzkgaming2019@gmail.com
 
 
 import logging

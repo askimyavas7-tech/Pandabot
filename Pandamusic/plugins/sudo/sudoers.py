@@ -1,12 +1,12 @@
 from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
-from ShrutiMusic import app
-from ShrutiMusic.misc import SUDOERS
-from ShrutiMusic.utils.database import add_sudo, remove_sudo
-from ShrutiMusic.utils.decorators.language import language
-from ShrutiMusic.utils.extraction import extract_user
-from ShrutiMusic.utils.inline import close_markup
-from ShrutiMusic.utils.functions import DevID
+from Pandamusic import app
+from Pandamusic.misc import SUDOERS
+from Pandamusic.utils.database import add_sudo, remove_sudo
+from Pandamusic.utils.decorators.language import language
+from Pandamusic.utils.extraction import extract_user
+from Pandamusic.utils.inline import close_markup
+from Pandamusic.utils.functions import DevID
 from config import BANNED_USERS, OWNER_ID
 
 

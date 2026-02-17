@@ -32,8 +32,8 @@ youtube-search-python
 py-yt-search
 yt-dlp
 # ===========================================
-# ©️ 2025 Nand Yaduwanshi , aka @NoxxOP
-# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
-# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ©️ 2025 Thaw ZIN , TZK @HANTHAR999
+# 🔗 GitHub : https://github.com/tzkgaming2019-creator/Pandabot
+# 📢 Telegram Channel : https://t.me/myanmarbot_music
 # ===========================================
 

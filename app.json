@@ -6,7 +6,7 @@
     "python3",
     "telegram",
     "bot",
-    "ShrutiBots",
+    "myanmarbot_music",
     "MusicBot",
     "telegram-bot",
     "pyrogram"
@@ -14,12 +14,12 @@
   "env": {
     "API_ID": {
       "description": "Get this value from https://my.telegram.org",
-      "value": "29448785",
+      "value": "30566096",
       "required": true
     },
     "API_HASH": {
       "description": "Get this value from https://my.telegram.org",
-      "value": "599574f6aff0a09ebb76305b58e7e9c2",
+      "value": "571416932b7adcd28b5e69b2cd3d34b7",
       "required": true
     },
     "BOT_TOKEN": {
@@ -44,7 +44,7 @@
     },
     "UPSTREAM_REPO": {
       "description": "URL of your GitHub repository",
-      "value": "https://github.com/khithlainhtet/Safebot-shwemm-panda",
+      "value": "https://github.com/tzkgaming2019-creator/Pandabot",
       "required": false
     },
     "STRING_SESSION": {
@@ -84,27 +84,27 @@
     },
     "INSTAGRAM": {
       "description": "Your Instagram profile link or Any Link",
-      "value": "https://instagram.com/yaduwanshi_nand",
+      "value": "https://t.me/HANTHAR_1999",
       "required": false
     },
     "YOUTUBE": {
       "description": "Your YouTube channel link or Any Link",
-      "value": "https://youtube.com/@NandEditz",
+      "value": "https://t.me/HANTHAR_27",
       "required": false
     },
     "GITHUB": {
       "description": "Your GitHub profile link or Any Link",
-      "value": "https://github.com/NoxxOP",
+      "value": "https://github.com/tzkgaming2019-creator",
       "required": false
     },
     "DONATE": {
       "description": "Link where people can support/donate or Any Link",
-      "value": "http://bit.ly/3NITa3G",
+      "value": "https://t.me/myanmarbot_music/71",
       "required": false
     },
     "START_IMG_URL": {
       "description": "Image that appears with the /start command",
-      "value": "https://graph.org/file/e054e63251ef2dc5729dd-6f719a9ecc59862631.png",
+      "value": "https://files.catbox.moe/t2llak.jpg",
       "required": false
     }
   },

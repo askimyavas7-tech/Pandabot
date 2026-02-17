@@ -25,10 +25,10 @@ from typing import Union
 from pyrogram import filters, types
 from pyrogram.types import InlineKeyboardMarkup, Message
 
-from ShrutiMusic import app
-from ShrutiMusic.utils.database import get_lang
-from ShrutiMusic.utils.decorators.language import LanguageStart, languageCB
-from ShrutiMusic.utils.inline.help import (
+from Pandamusic import app
+from Pandamusic.utils.database import get_lang
+from Pandamusic.utils.decorators.language import LanguageStart, languageCB
+from Pandamusic.utils.inline.help import (
     help_back_markup,
     private_help_panel,
     help_pannel_page1,

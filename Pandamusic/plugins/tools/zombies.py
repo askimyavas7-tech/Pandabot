@@ -1,5 +1,5 @@
-# Copyright (c) 2025 Nand Yaduwanshi <NoxxOP>
-# Location: Supaul, Bihar
+# Copyright (c) 2026
+# Location: 
 #
 # All rights reserved.
 #
@@ -17,7 +17,7 @@
 # - Selling or using commercially
 #
 # Contact for permissions:
-# Email: badboy809075@gmail.com
+# Email: tzkgaming2019@gmail.com
 
 
 import asyncio
@@ -25,8 +25,8 @@ import asyncio
 from pyrogram import filters
 from pyrogram.enums import ChatMemberStatus
 from pyrogram.errors import FloodWait
-from ShrutiMusic import app
-from ShrutiMusic.utils.permissions import adminsOnly
+from Pandamusic import app
+from Pandamusic.utils.permissions import adminsOnly
 
 chatQueue = []
 
@@ -126,13 +126,13 @@ __HELP__ = """
 - ᴜsᴇ ᴅɪʀᴇᴄᴛʟʏ ɪɴ ᴀ ɢʀᴏᴜᴘ ᴄʜᴀᴛ ᴡɪᴛʜ ᴍᴇ ғᴏʀ ʙᴇsᴛ ᴇғғᴇᴄᴛ. ᴏɴʟʏ ᴀᴅᴍɪɴs ᴄᴀɴ ᴇxᴇᴄᴜᴛᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ."""
 
 
-# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
+# ©️ Copyright Reserved 
 
 # ===========================================
-# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
-# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
-# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ©️ 2026
+# 🔗 GitHub : 
+# 📢 Telegram Channel : 
 # ===========================================
 
 
-# ❤️ Love From ShrutiBots 
+# ❤️ Love From 

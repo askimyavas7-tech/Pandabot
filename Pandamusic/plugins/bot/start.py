@@ -5,10 +5,10 @@ from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from py_yt import VideosSearch
 import config
-from ShrutiMusic import app
-from ShrutiMusic.misc import _boot_
-from ShrutiMusic.plugins.sudo.sudoers import sudoers_list
-from ShrutiMusic.utils.database import (
+from Pandamusic import app
+from Pandamusic.misc import _boot_
+from Pandamusic.plugins.sudo.sudoers import sudoers_list
+from Pandamusic.utils.database import (
     add_served_chat,
     add_served_user,
     blacklisted_chats,
@@ -16,10 +16,10 @@ from ShrutiMusic.utils.database import (
     is_banned_user,
     is_on_off,
 )
-from ShrutiMusic.utils import bot_sys_stats
-from ShrutiMusic.utils.decorators.language import LanguageStart
-from ShrutiMusic.utils.formatters import get_readable_time
-from ShrutiMusic.utils.inline import help_pannel_page1, private_panel, start_panel
+from Pandamusic.utils import bot_sys_stats
+from Pandamusic.utils.decorators.language import LanguageStart
+from Pandamusic.utils.formatters import get_readable_time
+from Pandamusic.utils.inline import help_pannel_page1, private_panel, start_panel
 from config import BANNED_USERS
 from strings import get_string
 

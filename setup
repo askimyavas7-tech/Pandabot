@@ -157,7 +157,7 @@ main() {
     clear
     pprint "\n╔════════════════════════════════════╗\n" "cpurple"
     pprint "║                                    ║\n" "cpurple"
-    pprint "║     ShrutiMusic Setup Installer    ║\n" "cpurple"
+    pprint "║     Pandamusic Setup Installer    ║\n" "cpurple"
     pprint "║                                    ║\n" "cpurple"
     pprint "╚════════════════════════════════════╝\n\n" "cpurple"
     

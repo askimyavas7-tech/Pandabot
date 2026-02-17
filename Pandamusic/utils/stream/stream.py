@@ -27,15 +27,15 @@ from typing import Union
 from pyrogram.types import InlineKeyboardMarkup
 
 import config
-from ShrutiMusic import Carbon, YouTube, app
-from ShrutiMusic.core.call import Nand
-from ShrutiMusic.misc import db
-from ShrutiMusic.utils.database import add_active_video_chat, is_active_chat
-from ShrutiMusic.utils.exceptions import AssistantErr
-from ShrutiMusic.utils.inline import aq_markup, close_markup, stream_markup
-from ShrutiMusic.utils.pastebin import NandBin
-from ShrutiMusic.utils.stream.queue import put_queue, put_queue_index
-from ShrutiMusic.utils.thumbnails import gen_thumb
+from Pandamusic import Carbon, YouTube, app
+from Pandamusic.core.call import Nand
+from Pandamusic.misc import db
+from Pandamusic.utils.database import add_active_video_chat, is_active_chat
+from Pandamusic.utils.exceptions import AssistantErr
+from Pandamusic.utils.inline import aq_markup, close_markup, stream_markup
+from Pandamusic.utils.pastebin import NandBin
+from Pandamusic.utils.stream.queue import put_queue, put_queue_index
+from Pandamusic.utils.thumbnails import gen_thumb
 
 
 async def stream(

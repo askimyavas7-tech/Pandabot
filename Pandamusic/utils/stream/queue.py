@@ -23,8 +23,8 @@
 import asyncio
 from typing import Union
 
-from ShrutiMusic.misc import db
-from ShrutiMusic.utils.formatters import check_duration, seconds_to_min
+from Pandamusic.misc import db
+from Pandamusic.utils.formatters import check_duration, seconds_to_min
 from config import autoclean, time_to_seconds
 
 

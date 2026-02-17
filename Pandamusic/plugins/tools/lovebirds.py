@@ -1,7 +1,7 @@
 import random
 from pyrogram import filters
-from ShrutiMusic import app
-from ShrutiMusic.core.mongo import mongodb
+from Pandamusic import app
+from Pandamusic.core.mongo import mongodb
 from config import MONGO_DB_URI
 
 lovebirds_db = mongodb.lovebirds

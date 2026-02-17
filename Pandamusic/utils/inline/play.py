@@ -22,7 +22,7 @@
 
 import math
 from pyrogram.types import InlineKeyboardButton
-from ShrutiMusic.utils.formatters import time_to_seconds
+from Pandamusic.utils.formatters import time_to_seconds
 from config import BOT_USERNAME, SUPPORT_GROUP, SUPPORT_CHANNEL
 
 

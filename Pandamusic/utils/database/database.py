@@ -25,8 +25,8 @@ import asyncio
 from datetime import date
 from typing import Dict, List, Union
 
-from ShrutiMusic import userbot
-from ShrutiMusic.core.mongo import mongodb
+from Pandamusic import userbot
+from Pandamusic.core.mongo import mongodb
 
 authdb = mongodb.adminauth
 authuserdb = mongodb.authuser

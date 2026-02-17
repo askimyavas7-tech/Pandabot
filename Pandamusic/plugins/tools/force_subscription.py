@@ -23,9 +23,9 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ChatPermissions
 from pymongo import MongoClient
-from ShrutiMusic import app
+from Pandamusic import app
 import asyncio
-from ShrutiMusic.misc import SUDOERS
+from Pandamusic.misc import SUDOERS
 from config import MONGO_DB_URI
 from pyrogram.enums import ChatMembersFilter
 from pyrogram.errors import (

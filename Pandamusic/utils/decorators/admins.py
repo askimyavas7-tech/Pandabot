@@ -23,9 +23,9 @@
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from ShrutiMusic import app
-from ShrutiMusic.misc import SUDOERS, db
-from ShrutiMusic.utils.database import (
+from Pandamusic import app
+from Pandamusic.misc import SUDOERS, db
+from Pandamusic.utils.database import (
     get_authuser_names,
     get_cmode,
     get_lang,

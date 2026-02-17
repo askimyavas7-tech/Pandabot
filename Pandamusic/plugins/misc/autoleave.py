@@ -8,15 +8,15 @@ from pytgcalls.exceptions import GroupCallNotFound
 import logging
 
 import config
-from ShrutiMusic import app
-from ShrutiMusic.misc import db
-from ShrutiMusic.core.call import Nand, autoend, counter
-from ShrutiMusic.utils.database import get_client, set_loop, is_active_chat, is_autoend, is_autoleave
+from Pandamusic import app
+from Pandamusic.misc import db
+from Pandamusic.core.call import Nand, autoend, counter
+from Pandamusic.utils.database import get_client, set_loop, is_active_chat, is_autoend, is_autoleave
 
 
 async def auto_leave():
     while not await asyncio.sleep(43200):
-        from ShrutiMusic.core.userbot import assistants
+        from Pandamusic.core.userbot import assistants
         
         ender = await is_autoleave()
         if not ender:

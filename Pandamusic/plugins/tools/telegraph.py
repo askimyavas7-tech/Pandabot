@@ -24,7 +24,7 @@ import os
 import requests
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from ShrutiMusic import app
+from Pandamusic import app
 
 
 def upload_file(file_path):

@@ -1,20 +1,20 @@
 services:
   - type: web
-    name: shruti-music
+    name: panda-music
     env: python
     region: oregon
     plan: free
     buildCommand: |
       apt-get update && apt-get install -y ffmpeg
       pip install -r requirements.txt
-    startCommand: python3 -m ShrutiMusic
+    startCommand: python3 -m pandausic
     autoDeploy: true
 
     envVars:
       API_ID: 
-        value: 29448785
+        value: 30566096
       API_HASH: 
-        value: 599574f6aff0a09ebb76305b58e7e9c2
+        value: 571416932b7adcd28b5e69b2cd3d34b7
       API_KEY:
         sync: false
       BOT_TOKEN:
@@ -24,11 +24,11 @@ services:
       OWNER_ID:
         value: 7574330905
       OWNER_USERNAME:
-        value: WTF_WhyMeeh
+        value: HANTHAR999
       BOT_USERNAME:
-        value: ShrutixMusicBot
+        value: HANTHAR1999_Bot
       UPSTREAM_REPO:
-        value: https://github.com/NoxxOP/ShrutiMusic
+        value: https://github.com/tzkgaming2019-creator/Pandabot
       STRING_SESSION:
         sync: false
       GIT_TOKEN:
@@ -40,16 +40,16 @@ services:
       LOG_GROUP_ID:
         value: -1002321189618
       SUPPORT_GROUP:
-        value: https://t.me/ShrutiBotsupport
+        value: https://t.me/myanmar_music_Bot2027
       SUPPORT_CHANNEL:
-        value: https://t.me/ShrutiBots
+        value: https://t.me/myanmarbot_music
       INSTAGRAM:
-        value: https://instagram.com/yaduwanshi_nand
+        value: https://t.me/burmamyanmar_2
       YOUTUBE:
-        value: https://youtube.com/@NandEditz
+        value: https://t.me/HANTHAR_27
       GITHUB:
-        value: https://github.com/NoxxOP
+        value: https://github.com/tzkgaming2019-creator
       DONATE:
-        value: https://t.me/ShrutiBots/91
+        value: https://t.me/myanmarbot_music/71
       START_IMG_URL:
         sync: false

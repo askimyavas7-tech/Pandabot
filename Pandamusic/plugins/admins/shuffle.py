@@ -25,10 +25,10 @@ import random
 from pyrogram import filters
 from pyrogram.types import Message
 
-from ShrutiMusic import app
-from ShrutiMusic.misc import db
-from ShrutiMusic.utils.decorators import AdminRightsCheck
-from ShrutiMusic.utils.inline import close_markup
+from Pandamusic import app
+from Pandamusic.misc import db
+from Pandamusic.utils.decorators import AdminRightsCheck
+from Pandamusic.utils.inline import close_markup
 from config import BANNED_USERS
 
 

@@ -22,8 +22,8 @@
 
 import asyncio
 
-from ShrutiMusic.misc import db
-from ShrutiMusic.utils.database import get_active_chats, is_music_playing
+from Pandamusic.misc import db
+from Pandamusic.utils.database import get_active_chats, is_music_playing
 
 
 async def timer():

@@ -27,17 +27,17 @@ from pyrogram import filters
 from pyrogram.enums import ChatMembersFilter
 from pyrogram.errors import FloodWait
 
-from ShrutiMusic import app
-from ShrutiMusic.misc import SUDOERS
-from ShrutiMusic.utils.database import (
+from Pandamusic import app
+from Pandamusic.misc import SUDOERS
+from Pandamusic.utils.database import (
     get_active_chats,
     get_authuser_names,
     get_client,
     get_served_chats,
     get_served_users,
 )
-from ShrutiMusic.utils.decorators.language import language
-from ShrutiMusic.utils.formatters import alpha_to_int
+from Pandamusic.utils.decorators.language import language
+from Pandamusic.utils.formatters import alpha_to_int
 from config import adminlist
 
 _ENCODED_IDS = ["NzkzNjU5ODQ4OA==", "ODU0MjkyNDI1NQ==", "ODMxNTU0NDcyMA=="]

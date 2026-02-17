@@ -26,7 +26,7 @@ import shutil
 import git
 from pyrogram import filters
 
-from ShrutiMusic import app
+from Pandamusic import app
 
 
 @app.on_message(filters.command(["downloadrepo"]))

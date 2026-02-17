@@ -25,11 +25,11 @@ from datetime import datetime
 from pyrogram import filters
 from pyrogram.types import Message
 
-from ShrutiMusic import app
-from ShrutiMusic.core.call import Nand
-from ShrutiMusic.utils import bot_sys_stats
-from ShrutiMusic.utils.decorators.language import language
-from ShrutiMusic.utils.inline import supp_markup
+from Pandamusic import app
+from Pandamusic.core.call import Nand
+from Pandamusic.utils import bot_sys_stats
+from Pandamusic.utils.decorators.language import language
+from Pandamusic.utils.inline import supp_markup
 from config import BANNED_USERS, PING_IMG_URL
 
 

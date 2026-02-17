@@ -23,9 +23,9 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from ShrutiMusic import app
-from ShrutiMusic.misc import SUDOERS
-from ShrutiMusic.utils.database import (
+from Pandamusic import app
+from Pandamusic.misc import SUDOERS
+from Pandamusic.utils.database import (
     get_lang,
     is_maintenance,
     maintenance_off,

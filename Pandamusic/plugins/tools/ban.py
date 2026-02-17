@@ -36,18 +36,18 @@ from pyrogram.types import (
 from string import ascii_lowercase
 from typing import Dict, Union
 
-from ShrutiMusic import app
-from ShrutiMusic.misc import SUDOERS
-from ShrutiMusic.core.mongo import mongodb
-from ShrutiMusic.utils.error import capture_err
-from ShrutiMusic.utils.keyboard import ikb
-from ShrutiMusic.utils.database import save_filter
-from ShrutiMusic.utils.functions import (
+from Pandamusic import app
+from Pandamusic.misc import SUDOERS
+from Pandamusic.core.mongo import mongodb
+from Pandamusic.utils.error import capture_err
+from Pandamusic.utils.keyboard import ikb
+from Pandamusic.utils.database import save_filter
+from Pandamusic.utils.functions import (
     extract_user,
     extract_user_and_reason,
     time_converter,
 )
-from ShrutiMusic.utils.permissions import adminsOnly, member_permissions
+from Pandamusic.utils.permissions import adminsOnly, member_permissions
 from config import BANNED_USERS
 
 warnsdb = mongodb.warns
@@ -658,8 +658,8 @@ async def check_warns(_, message: Message):
 
 
 from pyrogram import filters
-from ShrutiMusic import app
-from ShrutiMusic.misc import SUDOERS
+from Pandamusic import app
+from Pandamusic.misc import SUDOERS
 import asyncio
 from pyrogram.errors import FloodWait
 

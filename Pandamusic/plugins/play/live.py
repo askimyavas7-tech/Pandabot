@@ -22,10 +22,10 @@
 
 from pyrogram import filters
 
-from ShrutiMusic import YouTube, app
-from ShrutiMusic.utils.channelplay import get_channeplayCB
-from ShrutiMusic.utils.decorators.language import languageCB
-from ShrutiMusic.utils.stream.stream import stream
+from Pandamusic import YouTube, app
+from Pandamusic.utils.channelplay import get_channeplayCB
+from Pandamusic.utils.decorators.language import languageCB
+from Pandamusic.utils.stream.stream import stream
 from config import BANNED_USERS
 
 

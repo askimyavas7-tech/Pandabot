@@ -9,8 +9,8 @@ from telegraph import upload_file
 from PIL import Image, ImageDraw
 import requests
 
-from ShrutiMusic.utils import get_image, get_couple, save_couple
-from ShrutiMusic import app
+from Pandamusic.utils import get_image, get_couple, save_couple
+from Pandamusic import app
 
 
 # get current date in GMT+5:30 timezone
@@ -134,7 +134,7 @@ Nᴇxᴛ ᴄᴏᴜᴘʟᴇs ᴡɪʟʟ ʙᴇ sᴇʟᴇᴄᴛᴇᴅ ᴏɴ {tomorro
                     [
                         [
                             InlineKeyboardButton(
-                                text="Aᴅᴅ ᴍᴇ 🌋",
+                                text="Aᴅᴅ ᴍᴇ 🤍",
                                 url=f"https://t.me/{app.username}?startgroup=true",
                             )
                         ]
@@ -171,7 +171,7 @@ Nᴇxᴛ ᴄᴏᴜᴘʟᴇs ᴡɪʟʟ ʙᴇ sᴇʟᴇᴄᴛᴇᴅ ᴏɴ {tomorro
                     [
                         [
                             InlineKeyboardButton(
-                                text="Aᴅᴅ ᴍᴇ🌋",
+                                text="Aᴅᴅ ᴍᴇ🤍",
                                 url=f"https://t.me/{app.username}?startgroup=true",
                             )
                         ]

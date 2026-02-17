@@ -24,8 +24,8 @@ import os
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 from pyrogram.types import Message
-from ShrutiMusic import app
-from ShrutiMusic.misc import SUDOERS
+from Pandamusic import app
+from Pandamusic.misc import SUDOERS
 from pyrogram.enums import ChatMemberStatus
 import asyncio
 

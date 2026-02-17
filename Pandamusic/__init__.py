@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Nand Yaduwanshi <NoxxOP>
+# Copyright (c) 2026 HAN THAR <HANTHAR999>
 # Location: Supaul, Bihar
 #
 # All rights reserved.
@@ -17,14 +17,14 @@
 # - Selling or using commercially
 #
 # Contact for permissions:
-# Email: badboy809075@gmail.com
+# Email: tzkgaming2019@gmail.com
 
 
-from ShrutiMusic.core.bot import Nand
-from ShrutiMusic.core.dir import dirr
-from ShrutiMusic.core.git import git
-from ShrutiMusic.core.userbot import Userbot
-from ShrutiMusic.misc import dbb, heroku
+from Pandamusic.core.bot import Nand
+from Pandamusic.core.dir import dirr
+from Pandamusic.core.git import git
+from Pandamusic.core.userbot import Userbot
+from Pandamusic.misc import dbb, heroku
 
 from .logging import LOGGER
 
@@ -48,13 +48,13 @@ Telegram = TeleAPI()
 YouTube = YouTubeAPI()
 
 
-# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
+# ©️ Copyright Reserved - @HANTHAR999 HAN THAR
 
 # ===========================================
-# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
-# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
-# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ©️ 2026 HAN THAR
+# 🔗 GitHub : https://github.com/tzkgaming2019-creator/Pandabot
+# 📢 Telegram Channel : https://t.me/myanmarbot_music
 # ===========================================
 
 
-# ❤️ Love From ShrutiBots 
+# ❤️ Love From myanmarbot_music 

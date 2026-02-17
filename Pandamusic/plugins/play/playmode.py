@@ -23,10 +23,10 @@
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, Message
 
-from ShrutiMusic import app
-from ShrutiMusic.utils.database import get_playmode, get_playtype, is_nonadmin_chat
-from ShrutiMusic.utils.decorators import language
-from ShrutiMusic.utils.inline.settings import playmode_users_markup
+from Pandamusic import app
+from Pandamusic.utils.database import get_playmode, get_playtype, is_nonadmin_chat
+from Pandamusic.utils.decorators import language
+from Pandamusic.utils.inline.settings import playmode_users_markup
 from config import BANNED_USERS
 
 

@@ -5,9 +5,9 @@ from logging import getLogger
 from pyrogram import enums, filters
 from pyrogram.types import ChatMemberUpdated
 
-from ShrutiMusic import app
-from ShrutiMusic.core.mongo import mongodb
-from ShrutiMusic.utils.database import get_assistant
+from Pandamusic import app
+from Pandamusic.core.mongo import mongodb
+from Pandamusic.utils.database import get_assistant
 from config import OWNER_ID
 
 LOGGER = getLogger(__name__)

@@ -21,7 +21,7 @@
 
 from pyrogram.types import InlineKeyboardButton
 import config
-from ShrutiMusic import app
+from Pandamusic import app
 
 def start_panel(_):
     buttons = [

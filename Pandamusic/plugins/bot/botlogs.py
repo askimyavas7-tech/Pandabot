@@ -24,8 +24,8 @@ import random
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from config import LOG_GROUP_ID
-from ShrutiMusic import app
-from ShrutiMusic.utils.database import add_served_chat, get_assistant
+from Pandamusic import app
+from Pandamusic.utils.database import add_served_chat, get_assistant
 
 welcome_photo = "https://files.catbox.moe/ajobub.jpg"
 
@@ -79,7 +79,7 @@ async def join_watcher(_, message):
 
 
 from pyrogram.types import Message
-from ShrutiMusic.utils.database import delete_served_chat, get_assistant
+from Pandamusic.utils.database import delete_served_chat, get_assistant
 
 photo = [
     "https://telegra.ph/file/1949480f01355b4e87d26.jpg",

@@ -23,11 +23,11 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from ShrutiMusic import YouTube, app
-from ShrutiMusic.core.call import Nand
-from ShrutiMusic.misc import db
-from ShrutiMusic.utils import AdminRightsCheck, seconds_to_min
-from ShrutiMusic.utils.inline import close_markup
+from Pandamusic import YouTube, app
+from Pandamusic.core.call import Nand
+from Pandamusic.misc import db
+from Pandamusic.utils import AdminRightsCheck, seconds_to_min
+from Pandamusic.utils.inline import close_markup
 from config import BANNED_USERS
 
 

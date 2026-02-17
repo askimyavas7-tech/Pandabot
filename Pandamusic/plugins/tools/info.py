@@ -15,7 +15,7 @@ import re
 from time import time
 from datetime import datetime
 from pyrogram import filters, types, enums
-from ShrutiMusic import app
+from Pandamusic import app
 
 user_last_message_time = {}
 user_command_count = {}

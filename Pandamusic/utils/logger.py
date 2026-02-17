@@ -22,8 +22,8 @@
 
 from pyrogram.enums import ParseMode
 
-from ShrutiMusic import app
-from ShrutiMusic.utils.database import is_on_off
+from Pandamusic import app
+from Pandamusic.utils.database import is_on_off
 from config import LOG_GROUP_ID
 
 

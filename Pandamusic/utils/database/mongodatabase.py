@@ -22,7 +22,7 @@
 
 from typing import Dict, List, Union
 
-from ShrutiMusic.core.mongo import mongodb
+from Pandamusic.core.mongo import mongodb
 
 queriesdb = mongodb.queries
 userdb = mongodb.userstats

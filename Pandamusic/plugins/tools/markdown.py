@@ -24,8 +24,8 @@ from pyrogram.enums import ChatType, ParseMode
 from pyrogram.filters import command
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
-from ShrutiMusic import app
-from ShrutiMusic.utils.functions import MARKDOWN
+from Pandamusic import app
+from Pandamusic.utils.functions import MARKDOWN
 
 
 @app.on_message(command("markdownhelp"))

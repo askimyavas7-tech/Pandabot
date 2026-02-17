@@ -23,7 +23,7 @@
 import requests
 from pyrogram import filters
 
-from ShrutiMusic import app
+from Pandamusic import app
 
 truth_api_url = "https://api.truthordarebot.xyz/v1/truth"
 dare_api_url = "https://api.truthordarebot.xyz/v1/dare"

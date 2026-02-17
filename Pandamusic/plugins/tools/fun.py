@@ -24,7 +24,7 @@ import requests
 from pyrogram import filters
 from pyrogram.types import Message
 
-from ShrutiMusic import app
+from Pandamusic import app
 
 
 @app.on_message(

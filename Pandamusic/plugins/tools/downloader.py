@@ -22,7 +22,7 @@
 
 from pyrogram import filters
 from pyrogram.types import Message
-from ShrutiMusic import app
+from Pandamusic import app
 import requests
 import os
 
@@ -3314,7 +3314,7 @@ async def video_downloader(_, message: Message):
 
 from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, InputMediaVideo
-from ShrutiMusic import app
+from Pandamusic import app
 
 REPO_VIDEO = "https://files.catbox.moe/aoafwn.mp4"
 
@@ -3325,13 +3325,13 @@ async def send_repo(_, message: Message):
         caption=(
             "<b>✨ ʜᴇʏ ᴅᴇᴀʀ, ʜᴇʀᴇ ɪꜱ ᴛʜᴇ ᴏꜰꜰɪᴄɪᴀʟ ʀᴇᴘᴏꜱɪᴛᴏʀʏ �ᴏꜰ ᴛʜɪꜱ ʙᴏᴛ ✨</b>\n\n"
             "🔗 �ᴏɴ'ᴛ ꜰᴏʀɢᴇᴛ ᴛᴏ ɢɪᴠᴇ ᴀ ꜱᴛᴀʀ 🌟 ᴀɴᴅ ꜰᴏʟʟᴏᴡ!\n\n"
-            "🧡 ᴄʀᴇᴅɪᴛꜱ : <a href='https://t.me/ShrutiBots'>@ShrutiBots</a>"
+            "🧡 ᴄʀᴇᴅɪᴛꜱ : <a href='https://t.me/myanmarbot_music'>@myanmarbot_music</a>"
         ),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("📂 Management Bot", url="http://github.com/NoxxOP/ShrutiMusic"),
-                    InlineKeyboardButton("📂 Music Bot", url="http://github.com/NoxxOP/ShrutixMusic")
+                    InlineKeyboardButton("📂 Management Bot", url="http://github.com/tzkgaming2019-creator/Pandabot"),
+                    InlineKeyboardButton("📂 Music Bot", url="http://github.com/tzkgaming2019-creator/Pandabot")
                 ]
             ]
         ),

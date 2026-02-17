@@ -25,10 +25,10 @@ import asyncio
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 
-from ShrutiMusic import YouTube, app
-from ShrutiMusic.core.call import Nand
-from ShrutiMusic.misc import SUDOERS, db
-from ShrutiMusic.utils.database import (
+from Pandamusic import YouTube, app
+from Pandamusic.core.call import Nand
+from Pandamusic.misc import SUDOERS, db
+from Pandamusic.utils.database import (
     get_active_chats,
     get_lang,
     get_upvote_count,
@@ -39,12 +39,12 @@ from ShrutiMusic.utils.database import (
     music_on,
     set_loop,
 )
-from ShrutiMusic.utils.decorators.language import languageCB
-from ShrutiMusic.utils.formatters import seconds_to_min
-from ShrutiMusic.utils.inline import close_markup, stream_markup, stream_markup_timer
-from ShrutiMusic.utils.inline.help import help_pannel_page1, help_pannel_page2, help_pannel_page3, help_pannel_page4
-from ShrutiMusic.utils.stream.autoclear import auto_clean
-from ShrutiMusic.utils.thumbnails import gen_thumb
+from Pandamusic.utils.decorators.language import languageCB
+from Pandamusic.utils.formatters import seconds_to_min
+from Pandamusic.utils.inline import close_markup, stream_markup, stream_markup_timer
+from Pandamusic.utils.inline.help import help_pannel_page1, help_pannel_page2, help_pannel_page3, help_pannel_page4
+from Pandamusic.utils.stream.autoclear import auto_clean
+from Pandamusic.utils.thumbnails import gen_thumb
 from config import (
     BANNED_USERS,
     SOUNCLOUD_IMG_URL,
@@ -88,8 +88,8 @@ async def fork_repo_callback(client, query):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("🚀 Fᴏʀᴋ Rᴇᴘᴏ", url="https://github.com/NoxxOP/ShrutiMusic/fork"),
-                    InlineKeyboardButton("⚡ Hᴇʀᴏᴋᴜ Dᴇᴘʟᴏʏ", url="https://dashboard.heroku.com/new?template=https://github.com/NoxxOP/ShrutiMusic")
+                    InlineKeyboardButton("TELEGRAM SHOP", url="https://t.me/HANTHAR_1999"),
+                    InlineKeyboardButton("အကူအညီ ရယူရန်", url="https://t.me/HANTHAR999")
                 ],
                 [
                     InlineKeyboardButton("🔙 Bᴀᴄᴋ", callback_data="settingsback_helper")
@@ -102,17 +102,17 @@ async def fork_repo_callback(client, query):
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup
 
-from ShrutiMusic.utils.inline.start import about_panel
+from Pandamusic.utils.inline.start import about_panel
 from strings import get_string
 from config import BANNED_USERS
 
 
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup
-from ShrutiMusic.utils.inline.start import owner_panel  # Import owner_panel function
+from Pandamusic.utils.inline.start import owner_panel  # Import owner_panel function
 from strings import get_string
 from config import BANNED_USERS
-from ShrutiMusic import app
+from Pandamusic import app
 
 @app.on_callback_query(filters.regex("about_page") & ~BANNED_USERS)
 async def about_cb(client, callback_query):
@@ -142,9 +142,9 @@ async def owner_page_cb(client, callback_query):
 
 from pyrogram import filters
 from pyrogram.types import CallbackQuery
-from ShrutiMusic import app
-from ShrutiMusic.core.call import Nand
-from ShrutiMusic.utils import bot_sys_stats
+from Pandamusic import app
+from Pandamusic.core.call import Nand
+from Pandamusic.utils import bot_sys_stats
 import time, psutil, asyncio
 
 def get_readable_time(seconds: int) -> str:
