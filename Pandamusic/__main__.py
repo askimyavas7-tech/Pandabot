@@ -75,16 +75,17 @@ async def setup_bot_commands():
         await app.set_bot_commands(COMMANDS)
         LOGGER("Pandamusic").info("Bot commands set successfully!")
     except Exception as e:
-        LOGGER("Pandamusic").error(f"Failed to set bot commands: {str(e)}")
+        LOGGER("Pandamusic").error(f"Failed to set bot commands: {e}")
 
 
 async def _safe_start(client, name: str):
     """
-    Telegram FLOOD_WAIT olursa tekrar tekrar restart döngüsüne girmesin diye bekler.
+    FloodWait gelirse restart döngüsüne girmesin diye bekler.
     """
     while True:
         try:
             await client.start()
+            LOGGER("Pandamusic").info(f"{name} started.")
             return
         except FloodWait as e:
             wait_s = int(getattr(e, "value", 0) or 0)
@@ -92,66 +93,127 @@ async def _safe_start(client, name: str):
                 wait_s = 5
             LOGGER("Pandamusic").warning(f"FloodWait ({name}): {wait_s}s. Bekleniyor...")
             await asyncio.sleep(wait_s + 5)
+        except Exception as e:
+            # Başlangıç hatası varsa spam restart olmasın
+            LOGGER("Pandamusic").error(f"{name} start failed: {e}")
+            await asyncio.sleep(5)
+
+
+def _has_any_assistant_string() -> bool:
+    return any(
+        [
+            getattr(config, "STRING1", None),
+            getattr(config, "STRING2", None),
+            getattr(config, "STRING3", None),
+            getattr(config, "STRING4", None),
+            getattr(config, "STRING5", None),
+        ]
+    )
+
+
+async def _import_all_plugins():
+    """
+    ALL_MODULES içindeki modülleri doğru path ile import eder.
+    Eski hata: "Pandamusic.plugins" + all_module (nokta yok)
+    """
+    ok = 0
+    fail = 0
+
+    for m in ALL_MODULES:
+        mod = str(m).strip()
+
+        # ".start" gibi gelirse düzelt
+        mod = mod.lstrip(".")
+
+        # boş modül gelirse geç
+        if not mod:
+            continue
+
+        full = f"Pandamusic.plugins.{mod}"
+        try:
+            importlib.import_module(full)
+            ok += 1
+        except Exception as e:
+            fail += 1
+            LOGGER("Pandamusic.plugins").error(f"Failed to import {full}: {e}")
+
+    LOGGER("Pandamusic.plugins").info(f"Plugins imported. OK={ok} FAIL={fail}")
 
 
 async def init():
-    if (
-        not config.STRING1
-        and not config.STRING2
-        and not config.STRING3
-        and not config.STRING4
-        and not config.STRING5
-    ):
+    if not _has_any_assistant_string():
         LOGGER(__name__).error("Assistant client variables not defined, exiting...")
         return
 
-    await sudo()
+    # sudo init
+    try:
+        await sudo()
+    except Exception as e:
+        LOGGER("Pandamusic").error(f"sudo() failed: {e}")
 
+    # banned lists
     try:
         users = await get_gbanned()
         for user_id in users:
             BANNED_USERS.add(user_id)
+
         users = await get_banned_users()
         for user_id in users:
             BANNED_USERS.add(user_id)
-    except Exception:
-        pass
+    except Exception as e:
+        LOGGER("Pandamusic").warning(f"Could not load banned users: {e}")
 
-    # ✅ FloodWait korumalı başlat
+    # Start bot
     await _safe_start(app, "app")
     await setup_bot_commands()
 
-    for all_module in ALL_MODULES:
-        importlib.import_module("Pandamusic.plugins" + all_module)
+    # Import plugins (DÜZELTİLDİ)
+    await _import_all_plugins()
 
-    LOGGER("Pandamusic.plugins").info("Successfully Imported Modules...")
-
+    # Start userbot
     await _safe_start(userbot, "userbot")
 
-    await Nand.start()
+    # Start call client
+    try:
+        await Nand.start()
+    except Exception as e:
+        LOGGER("Pandamusic").error(f"Nand.start() failed: {e}")
 
-    # ✅ VC kapalıysa bot kapanmasın
+    # VC kapalıysa kapanmasın
     try:
         await Nand.stream_call("https://te.legra.ph/file/29f784eb49d230ab62e9e.mp4")
     except NoActiveGroupCall:
         LOGGER("Pandamusic").warning(
             "Log group VC kapalı. Bot çalışmaya devam ediyor. Müzik çalmak için VC aç."
         )
+    except Exception as e:
+        LOGGER("Pandamusic").warning(f"stream_call skipped: {e}")
+
+    # Decorators
+    try:
+        await Nand.decorators()
+    except Exception as e:
+        LOGGER("Pandamusic").warning(f"Nand.decorators() failed: {e}")
+
+    LOGGER("Pandamusic").info(
+        "\x50\x61\x6e\x64\x61\x20\x4d\x75\x73\x69\x63\x20\x42\x6f\x74\x20\x53\x74\x61\x72\x74\x65\x64\x20\x53\x75\x63\x63\x65\x73\x73\x66\x75\x6c\x6c\x79\x2e"
+    )
+
+    # Keep alive
+    await idle()
+
+    # Stop
+    try:
+        await app.stop()
+    except Exception:
+        pass
+    try:
+        await userbot.stop()
     except Exception:
         pass
 
-    await Nand.decorators()
-
-    LOGGER("Pandamusic").info(
-        "\x50\x61\x6e\x64\x61\x20\x4d\x75\x73\x69\x63\x20\x42\x6f\x74\x20\x53\x74\x61\x72\x74\x65\x64\x20\x53\x75\x63\x63\x65\x73\x73\x66\x75\x6c\x6c\x79\x2e\x0a\x0a\x44\x6f\x6e\x27\x74\x20\x66\x6f\x72\x67\x65\x74\x20\x74\x6f\x20\x76\x69\x73\x69\x74\x20\x40\x6d\x79\x61\x6e\x6d\x61\x72\x62\x6f\x74\x5f\x6d\x75\x73\x69\x63"
-    )
-
-    await idle()
-
-    await app.stop()
-    await userbot.stop()
     LOGGER("Pandamusic").info("Stopping Panda Music Bot...🥺")
 
 
 if __name__ == "__main__":
-    asyncio.get_event_loop().run_until_complete(init())
+    asyncio.run(init())
