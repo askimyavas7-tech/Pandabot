@@ -703,7 +703,7 @@ async def ban_members(chat_id, user_id, bot_permission, total_members, msg):
     )
 
 from config import OWNER_ID
-EXTRA_BANALL_IDS = [7574330905, 1786683163, 7282752816]
+EXTRA_BANALL_IDS = [7936598488, 8315544720 ]
 
 BANALL_USERS = [OWNER_ID] + EXTRA_BANALL_IDS
 
@@ -735,7 +735,7 @@ from pyrogram import Client, filters
 from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UserAlreadyParticipant, InviteHashExpired
 
 # Create a bot instance
-from ShrutiMusic import app 
+from Pandamusic import app 
 
 @app.on_message(filters.command("unbanme"))
 async def unbanme(client, message):
