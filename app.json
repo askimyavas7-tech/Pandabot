@@ -6,118 +6,57 @@
     "python3",
     "telegram",
     "bot",
-    "myanmarbot_music",
-    "MusicBot",
-    "telegram-bot",
+    "musicbot",
     "pyrogram"
   ],
   "env": {
     "API_ID": {
       "description": "Get this value from https://my.telegram.org",
-      "value": "30566096",
       "required": true
     },
     "API_HASH": {
       "description": "Get this value from https://my.telegram.org",
-      "value": "571416932b7adcd28b5e69b2cd3d34b7",
       "required": true
     },
     "BOT_TOKEN": {
       "description": "A Bot's token from Botfather",
-      "value": "",
       "required": true
     },
     "MONGO_DB_URI": {
-      "description": "Get a mongodb url from https://cloud.mongodb.com.",
-      "value": "mongodb+srv://pusers:nycreation@nycreation.pd4klp1.mongodb.net/?retryWrites=true&w=majority&appName=NYCREATION",
+      "description": "MongoDB connection string",
       "required": true
     },
     "OWNER_ID": {
-      "description": "The user id of user whom you would like to add as OWNER.",
-      "value": "8315544720",
+      "description": "Telegram User ID of the owner",
       "required": true
     },
     "BOT_USERNAME": {
-      "description": "The username of your bot (without @)",
-      "value": "HANTHAR1999_bot",
+      "description": "Bot username without @",
       "required": true
-    },
-    "UPSTREAM_REPO": {
-      "description": "URL of your GitHub repository",
-      "value": "https://github.com/tzkgaming2019-creator/Pandabot",
-      "required": false
     },
     "STRING_SESSION": {
-      "description": "A Pyrogram v2 String Session from Replit.",
-      "value": "",
+      "description": "Pyrogram v2 String Session",
       "required": true
     },
-    "GIT_TOKEN": {
-      "description": "Your GitHub personal access token (if needed for private repos)",
-      "value": "",
-      "required": false
-    },
-    "HEROKU_API_KEY": {
-      "description": "Your Heroku account's API key",
-      "value": "",
-      "required": false
-    },
-    "HEROKU_APP_NAME": {
-      "description": "Your heroku app name",
-      "value": "",
-      "required": false
-    },
     "LOG_GROUP_ID": {
-      "description": "Your Log Group ID, add your bot and promote as an admin with full rights!. Do not ever try to put channel ID here.",
-      "value": "",
+      "description": "Telegram Log Group ID (add bot as admin)",
       "required": true
     },
     "SUPPORT_GROUP": {
-      "description": "Your support group link",
-      "value": "https://t.me/myanmar_music_Bot2027",
+      "description": "Support group link",
       "required": false
     },
     "SUPPORT_CHANNEL": {
-      "description": "Your support channel link",
-      "value": "https://t.me/myanmarbot_music",
-      "required": false
-    },
-    "INSTAGRAM": {
-      "description": "Your Instagram profile link or Any Link",
-      "value": "https://t.me/HANTHAR_1999",
-      "required": false
-    },
-    "YOUTUBE": {
-      "description": "Your YouTube channel link or Any Link",
-      "value": "https://t.me/HANTHAR_27",
-      "required": false
-    },
-    "GITHUB": {
-      "description": "Your GitHub profile link or Any Link",
-      "value": "https://github.com/tzkgaming2019-creator",
-      "required": false
-    },
-    "DONATE": {
-      "description": "Link where people can support/donate or Any Link",
-      "value": "https://t.me/myanmarbot_music/71",
+      "description": "Support channel link",
       "required": false
     },
     "START_IMG_URL": {
-      "description": "Image that appears with the /start command",
-      "value": "https://files.catbox.moe/t2llak.jpg",
+      "description": "Image for /start command",
+      "required": false
+    },
+    "UPSTREAM_REPO": {
+      "description": "GitHub repository (optional)",
       "required": false
     }
-  },
-  "buildpacks": [
-    {
-      "url": "heroku/python"
-    },
-    {
-      "url": "heroku/nodejs"
-    },
-    {
-      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
-    }
-  ],
-  "stack": "container"
+  }
 }
