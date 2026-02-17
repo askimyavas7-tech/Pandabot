@@ -27,6 +27,7 @@ from typing import Dict, List, Union
 
 from Pandamusic import userbot
 from Pandamusic.core.mongo import mongodb
+from Pandamusic.core.userbot import assistants  # ✅ FIX: ShrutiMusic -> Pandamusic
 
 authdb = mongodb.adminauth
 authuserdb = mongodb.authuser
@@ -94,8 +95,7 @@ async def set_assistant_new(chat_id, number):
 
 
 async def set_assistant(chat_id):
-    from ShrutiMusic.core.userbot import assistants
-
+    # ✅ FIX: remove ShrutiMusic import, use global assistants
     ran_assistant = random.choice(assistants)
     assistantdict[chat_id] = ran_assistant
     await assdb.update_one(
@@ -103,40 +103,35 @@ async def set_assistant(chat_id):
         {"$set": {"assistant": ran_assistant}},
         upsert=True,
     )
-    userbot = await get_client(ran_assistant)
-    return userbot
+    ub = await get_client(ran_assistant)
+    return ub
 
 
 async def get_assistant(chat_id: int) -> str:
-    from ShrutiMusic.core.userbot import assistants
-
+    # ✅ FIX: remove ShrutiMusic import, use global assistants
     assistant = assistantdict.get(chat_id)
     if not assistant:
         dbassistant = await assdb.find_one({"chat_id": chat_id})
         if not dbassistant:
-            userbot = await set_assistant(chat_id)
-            return userbot
-        else:
-            got_assis = dbassistant["assistant"]
-            if got_assis in assistants:
-                assistantdict[chat_id] = got_assis
-                userbot = await get_client(got_assis)
-                return userbot
-            else:
-                userbot = await set_assistant(chat_id)
-                return userbot
+            ub = await set_assistant(chat_id)
+            return ub
+        got_assis = dbassistant["assistant"]
+        if got_assis in assistants:
+            assistantdict[chat_id] = got_assis
+            ub = await get_client(got_assis)
+            return ub
+        ub = await set_assistant(chat_id)
+        return ub
     else:
         if assistant in assistants:
-            userbot = await get_client(assistant)
-            return userbot
-        else:
-            userbot = await set_assistant(chat_id)
-            return userbot
+            ub = await get_client(assistant)
+            return ub
+        ub = await set_assistant(chat_id)
+        return ub
 
 
 async def set_calls_assistant(chat_id):
-    from ShrutiMusic.core.userbot import assistants
-
+    # ✅ FIX: remove ShrutiMusic import, use global assistants
     ran_assistant = random.choice(assistants)
     assistantdict[chat_id] = ran_assistant
     await assdb.update_one(
@@ -148,8 +143,7 @@ async def set_calls_assistant(chat_id):
 
 
 async def group_assistant(self, chat_id: int) -> int:
-    from ShrutiMusic.core.userbot import assistants
-
+    # ✅ FIX: remove ShrutiMusic import, use global assistants
     assistant = assistantdict.get(chat_id)
     if not assistant:
         dbassistant = await assdb.find_one({"chat_id": chat_id})
@@ -159,7 +153,6 @@ async def group_assistant(self, chat_id: int) -> int:
             assis = dbassistant["assistant"]
             if assis in assistants:
                 assistantdict[chat_id] = assis
-                assis = assis
             else:
                 assis = await set_calls_assistant(chat_id)
     else:
@@ -167,6 +160,7 @@ async def group_assistant(self, chat_id: int) -> int:
             assis = assistant
         else:
             assis = await set_calls_assistant(chat_id)
+
     if int(assis) == 1:
         return self.one
     elif int(assis) == 2:
@@ -239,6 +233,7 @@ async def autoend_on():
 async def autoend_off():
     chat_id = 1234
     await autoenddb.delete_one({"chat_id": chat_id})
+
 
 async def is_autoleave() -> bool:
     chat_id = 1234
@@ -569,7 +564,6 @@ async def get_authuser_names(chat_id: int) -> List[str]:
 
 
 async def get_authuser(chat_id: int, name: str) -> Union[bool, dict]:
-    name = name
     _notes = await _get_authusers(chat_id)
     if name in _notes:
         return _notes[name]
@@ -578,7 +572,6 @@ async def get_authuser(chat_id: int, name: str) -> Union[bool, dict]:
 
 
 async def save_authuser(chat_id: int, name: str, note: dict):
-    name = name
     _notes = await _get_authusers(chat_id)
     _notes[name] = note
 
@@ -589,7 +582,6 @@ async def save_authuser(chat_id: int, name: str, note: dict):
 
 async def delete_authuser(chat_id: int, name: str) -> bool:
     notesd = await _get_authusers(chat_id)
-    name = name
     if name in notesd:
         del notesd[name]
         await authuserdb.update_one(
@@ -691,12 +683,9 @@ async def remove_banned_user(user_id: int):
 
 
 # ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
-
 # ===========================================
 # ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
 # 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
 # 📢 Telegram Channel : https://t.me/ShrutiBots
 # ===========================================
-
-
-# ❤️ Love From ShrutiBots 
+# ❤️ Love From ShrutiBots
