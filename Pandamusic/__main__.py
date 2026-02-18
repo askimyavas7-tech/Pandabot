@@ -17,7 +17,7 @@ COMMANDS = [
     BotCommand("start", "❖ sᴛᴀʀᴛ ʙᴏᴛ • ᴛᴏ sᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ"),
     BotCommand("help", "❖ ʜᴇʟᴘ ᴍᴇɴᴜ • ɢᴇᴛ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴀɴᴅ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ"),
     BotCommand("ping", "❖ ᴘɪɴɢ ʙᴏᴛ • ᴄʜᴇᴄᴋ ᴘɪɴɢ ᴀɴᴅ sʏsᴛᴇᴍ sᴛᴀᴛs"),
-    BotCommand("play", "❖ ᴘʟᴀʏ ᴀᴜᴅɪᴏ ᴏɴ ᴠᴄ • ᴛᴏ ᴘʟᴀʏ ᴀɴʏ ᴀᴜᴅɪᴏ ɪɴ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ"),
+    BotCommand("play", "❖ ᴘʟᴀʏ ᴀᴜᴅɪᴏ ᴏɴ ᴠᴄ • ᴛᴏ ᴘʟᴀʏ ᴀɴʏ ᴘʟᴀʏ ᴀɴʏ ᴀᴜᴅɪᴏ ɪɴ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ"),
     BotCommand("vplay", "❖ ᴘʟᴀʏ ᴠɪᴅᴇᴏ ᴏɴ ᴠᴄ • ᴛᴏ sᴛʀᴇᴀᴍ ᴀɴʏ ᴠɪᴅᴇᴏ ɪɴ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ"),
     BotCommand("playrtmps", "❖ ᴘʟᴀʏ ʟɪᴠᴇ ᴠɪᴅᴇᴏ • sᴛʀᴇᴀᴍ ʟɪᴠᴇ ᴠɪᴅᴇᴏ ᴄᴏɴᴛᴇɴᴛ"),
     BotCommand("playforce", "❖ ғᴏʀᴄᴇ ᴘʟᴀʏ ᴀᴜᴅɪᴏ • ғᴏʀᴄᴇ ᴘʟᴀʏ ᴀɴʏ ᴀᴜᴅɪᴏ ᴛʀᴀᴄᴋ"),
@@ -124,8 +124,15 @@ async def init():
         LOGGER("Pandamusic").warning(f"Could not load banned users: {e}")
 
     await _safe_start(app, "app")
-    await setup_bot_commands()
 
+    # ✅ WEBHOOK KAPAT (DM'de cevap yoksa %90 sebep bu)
+    try:
+        await app.delete_webhook(drop_pending_updates=True)
+        LOGGER("Pandamusic").info("Webhook cleared (drop_pending_updates=True).")
+    except Exception as e:
+        LOGGER("Pandamusic").warning(f"delete_webhook failed: {e}")
+
+    await setup_bot_commands()
     await _import_all_plugins()
 
     await _safe_start(userbot, "userbot")
@@ -134,9 +141,6 @@ async def init():
         await Nand.start()
     except Exception as e:
         LOGGER("Pandamusic").error(f"Nand.start() failed: {e}")
-
-    # ✅ TEST stream_call KALDIRILDI (uyarı vermesin diye)
-    # Eğer istersen burada hiç dokunma, müzik çalınca zaten stream başlar.
 
     try:
         await Nand.decorators()
