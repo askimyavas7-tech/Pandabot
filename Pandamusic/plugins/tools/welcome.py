@@ -17,9 +17,12 @@ from Pandamusic.core.mongo import mongodb
 
 log = getLogger(__name__)
 
-# ✅ Welcome collection
-# bazı projelerde collection adı welcome / welcomes olabilir.
-wlcm = getattr(mongodb, "welcome", None) or getattr(mongodb, "welcomes", None) or mongodb.welcome
+# ✅ Collection seçimi: bool() yok, sadece None kontrol
+wlcm = getattr(mongodb, "welcome", None)
+if wlcm is None:
+    wlcm = getattr(mongodb, "welcomes", None)
+if wlcm is None:
+    wlcm = mongodb.welcome  # son çare
 
 
 class temp:
@@ -156,14 +159,7 @@ async def greet_group(_, member: ChatMemberUpdated):
     bot_username = await _bot_username()
     add_btn = (
         InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "🎵 ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ 🎵",
-                        url=f"https://t.me/{bot_username}?startgroup=True",
-                    )
-                ]
-            ]
+            [[InlineKeyboardButton("🎵 ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ 🎵", url=f"https://t.me/{bot_username}?startgroup=True")]]
         )
         if bot_username
         else None
@@ -177,18 +173,9 @@ async def greet_group(_, member: ChatMemberUpdated):
 
     try:
         if welcomeimg:
-            temp.MELCOW[key] = await app.send_photo(
-                chat_id,
-                photo=welcomeimg,
-                caption=caption,
-                reply_markup=add_btn,
-            )
+            temp.MELCOW[key] = await app.send_photo(chat_id, photo=welcomeimg, caption=caption, reply_markup=add_btn)
         else:
-            temp.MELCOW[key] = await app.send_message(
-                chat_id,
-                text=caption,
-                reply_markup=add_btn,
-            )
+            temp.MELCOW[key] = await app.send_message(chat_id, text=caption, reply_markup=add_btn)
     except Exception as e:
         log.error(e)
 
