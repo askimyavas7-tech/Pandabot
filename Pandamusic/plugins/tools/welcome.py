@@ -17,12 +17,8 @@ from Pandamusic.core.mongo import mongodb
 
 log = getLogger(__name__)
 
-# ✅ Collection seçimi: bool() yok, sadece None kontrol
-wlcm = getattr(mongodb, "welcome", None)
-if wlcm is None:
-    wlcm = getattr(mongodb, "welcomes", None)
-if wlcm is None:
-    wlcm = mongodb.welcome  # son çare
+# ✅ EN GARANTİ: bool/or/getattr YOK -> collection truth-value hatası OLMAZ
+wlcm = mongodb.welcome
 
 
 class temp:
@@ -99,13 +95,21 @@ async def auto_state(_, message: Message):
     if state == "on":
         if A and not A.get("disabled", False):
             return await message.reply_text("✦ Special Welcome Already Enabled")
-        await wlcm.update_one({"chat_id": chat_id}, {"$set": {"disabled": False}}, upsert=True)
+        await wlcm.update_one(
+            {"chat_id": chat_id},
+            {"$set": {"disabled": False}},
+            upsert=True,
+        )
         return await message.reply_text(f"✦ Enabled Special Welcome in {message.chat.title}")
 
     if state == "off":
         if A and A.get("disabled", False):
             return await message.reply_text("✦ Special Welcome Already Disabled")
-        await wlcm.update_one({"chat_id": chat_id}, {"$set": {"disabled": True}}, upsert=True)
+        await wlcm.update_one(
+            {"chat_id": chat_id},
+            {"$set": {"disabled": True}},
+            upsert=True,
+        )
         return await message.reply_text(f"✦ Disabled Special Welcome in {message.chat.title}")
 
     return await message.reply_text(usage)
@@ -136,7 +140,8 @@ async def greet_group(_, member: ChatMemberUpdated):
     try:
         if user.photo:
             pic_path = await app.download_media(
-                user.photo.big_file_id, file_name=f"downloads/pp{user.id}.png"
+                user.photo.big_file_id,
+                file_name=f"downloads/pp{user.id}.png",
             )
     except Exception:
         pic_path = None
@@ -159,7 +164,14 @@ async def greet_group(_, member: ChatMemberUpdated):
     bot_username = await _bot_username()
     add_btn = (
         InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🎵 ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ 🎵", url=f"https://t.me/{bot_username}?startgroup=True")]]
+            [
+                [
+                    InlineKeyboardButton(
+                        "🎵 ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ 🎵",
+                        url=f"https://t.me/{bot_username}?startgroup=True",
+                    )
+                ]
+            ]
         )
         if bot_username
         else None
@@ -173,9 +185,18 @@ async def greet_group(_, member: ChatMemberUpdated):
 
     try:
         if welcomeimg:
-            temp.MELCOW[key] = await app.send_photo(chat_id, photo=welcomeimg, caption=caption, reply_markup=add_btn)
+            temp.MELCOW[key] = await app.send_photo(
+                chat_id,
+                photo=welcomeimg,
+                caption=caption,
+                reply_markup=add_btn,
+            )
         else:
-            temp.MELCOW[key] = await app.send_message(chat_id, text=caption, reply_markup=add_btn)
+            temp.MELCOW[key] = await app.send_message(
+                chat_id,
+                text=caption,
+                reply_markup=add_btn,
+            )
     except Exception as e:
         log.error(e)
 
