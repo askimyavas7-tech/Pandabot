@@ -1,31 +1,9 @@
-# Copyright (c) 2026 HAN THAR
-# Location: Supaul, Bihar
-#
-# All rights reserved.
-#
-# This code is the intellectual property of Nand Yaduwanshi.
-# You are not allowed to copy, modify, redistribute, or use this
-# code for commercial or personal projects without explicit permission.
-#
-# Allowed:
-# - Forking for personal learning
-# - Submitting improvements via pull requests
-#
-# Not Allowed:
-# - Claiming this code as your own
-# - Re-uploading without credit or permission
-# - Selling or using commercially
-#
-# Contact for permissions:
-# Email: tzkgaming2019@gmail.com
-
 import asyncio
 import importlib
 
 from pyrogram import idle
 from pyrogram.types import BotCommand
 from pyrogram.errors import FloodWait
-from pytgcalls.exceptions import NoActiveGroupCall
 
 import config
 from Pandamusic import LOGGER, app, userbot
@@ -79,9 +57,6 @@ async def setup_bot_commands():
 
 
 async def _safe_start(client, name: str):
-    """
-    FloodWait gelirse restart döngüsüne girmesin diye bekler.
-    """
     while True:
         try:
             await client.start()
@@ -94,7 +69,6 @@ async def _safe_start(client, name: str):
             LOGGER("Pandamusic").warning(f"FloodWait ({name}): {wait_s}s. Bekleniyor...")
             await asyncio.sleep(wait_s + 5)
         except Exception as e:
-            # Başlangıç hatası varsa spam restart olmasın
             LOGGER("Pandamusic").error(f"{name} start failed: {e}")
             await asyncio.sleep(5)
 
@@ -112,20 +86,11 @@ def _has_any_assistant_string() -> bool:
 
 
 async def _import_all_plugins():
-    """
-    ALL_MODULES içindeki modülleri doğru path ile import eder.
-    Eski hata: "Pandamusic.plugins" + all_module (nokta yok)
-    """
     ok = 0
     fail = 0
 
     for m in ALL_MODULES:
-        mod = str(m).strip()
-
-        # ".start" gibi gelirse düzelt
-        mod = mod.lstrip(".")
-
-        # boş modül gelirse geç
+        mod = str(m).strip().lstrip(".")
         if not mod:
             continue
 
@@ -145,64 +110,43 @@ async def init():
         LOGGER(__name__).error("Assistant client variables not defined, exiting...")
         return
 
-    # sudo init
     try:
         await sudo()
     except Exception as e:
         LOGGER("Pandamusic").error(f"sudo() failed: {e}")
 
-    # banned lists
     try:
-        users = await get_gbanned()
-        for user_id in users:
+        for user_id in await get_gbanned():
             BANNED_USERS.add(user_id)
-
-        users = await get_banned_users()
-        for user_id in users:
+        for user_id in await get_banned_users():
             BANNED_USERS.add(user_id)
     except Exception as e:
         LOGGER("Pandamusic").warning(f"Could not load banned users: {e}")
 
-    # Start bot
     await _safe_start(app, "app")
     await setup_bot_commands()
 
-    # Import plugins (DÜZELTİLDİ)
     await _import_all_plugins()
 
-    # Start userbot
     await _safe_start(userbot, "userbot")
 
-    # Start call client
     try:
         await Nand.start()
     except Exception as e:
         LOGGER("Pandamusic").error(f"Nand.start() failed: {e}")
 
-    # VC kapalıysa kapanmasın
-    try:
-        await Nand.stream_call("https://te.legra.ph/file/29f784eb49d230ab62e9e.mp4")
-    except NoActiveGroupCall:
-        LOGGER("Pandamusic").warning(
-            "Log group VC kapalı. Bot çalışmaya devam ediyor. Müzik çalmak için VC aç."
-        )
-    except Exception as e:
-        LOGGER("Pandamusic").warning(f"stream_call skipped: {e}")
+    # ✅ TEST stream_call KALDIRILDI (uyarı vermesin diye)
+    # Eğer istersen burada hiç dokunma, müzik çalınca zaten stream başlar.
 
-    # Decorators
     try:
         await Nand.decorators()
     except Exception as e:
         LOGGER("Pandamusic").warning(f"Nand.decorators() failed: {e}")
 
-    LOGGER("Pandamusic").info(
-        "\x50\x61\x6e\x64\x61\x20\x4d\x75\x73\x69\x63\x20\x42\x6f\x74\x20\x53\x74\x61\x72\x74\x65\x64\x20\x53\x75\x63\x63\x65\x73\x73\x66\x75\x6c\x6c\x79\x2e"
-    )
+    LOGGER("Pandamusic").info("Panda Music Bot Started Successfully.")
 
-    # Keep alive
     await idle()
 
-    # Stop
     try:
         await app.stop()
     except Exception:
