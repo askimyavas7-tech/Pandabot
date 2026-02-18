@@ -1,206 +1,68 @@
-import asyncio
-
 from pyrogram import filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 from Pandamusic import app
-from Pandamusic.utils.inline.help import (
-    first_page,
-    help_back_markup,
-    help_buttons,
-    help_pannel,
-    private_help_panel,
+
+
+HELP_TEXT = (
+    "🎵 <b>Panda Music Bot — Yardım</b>\n\n"
+    "✅ <b>Temel Komutlar</b>\n"
+    "• /play <i>şarkı adı / link</i>\n"
+    "• /vplay <i>video adı / link</i>\n"
+    "• /pause — duraklat\n"
+    "• /resume — devam\n"
+    "• /skip — sonraki\n"
+    "• /stop — durdur\n"
+    "• /queue — sıra\n\n"
+    "👑 <b>Yönetici</b>\n"
+    "• /auth, /unauth, /authusers\n"
+    "• /settings, /stats\n\n"
+    "ℹ️ Not: Botu gruba ekleyip admin yap, VC aç, sonra /play kullan."
 )
-from Pandamusic.utils.functions import cln
-from Pandamusic.utils.functions.decorators import is_admin
-from Pandamusic.utils.inline import paginate_modules
-from Pandamusic.utils.stream.stream import stream
-from Pandamusic.utils import database
 
-from config import SUPPORT_GROUP
 
-# Help command handler
+async def _bot_username():
+    try:
+        me = await app.get_me()
+        return me.username
+    except Exception:
+        return None
+
 
 @app.on_message(filters.command(["help"]) & filters.group)
-@is_admin
-async def help_command(_, message):
-    if message.chat.type == "private":
-        return await help_private(_, message)
-
-    try:
-        await message.reply_text(
-            "📩 **Check your private messages for help menu!**",
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            "💬 Open Help Menu",
-                            url=f"https://t.me/{app.username}?start=help",
-                        )
-                    ]
-                ]
-            ),
+async def help_group(_, message):
+    uname = await _bot_username()
+    if not uname:
+        return await message.reply_text(
+            "PM yardım menüsü için botu özelden başlat."
         )
-    except Exception:
-        await message.reply_text("❌ I couldn't send you a message. Please start me in PM first.")
+
+    await message.reply_text(
+        "📩 Yardım menüsünü özelden gönderdim / göndereceğim.\n"
+        "Eğer gelmezse botu PM’de başlat.",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "💬 Yardımı Aç",
+                        url=f"https://t.me/{uname}?start=help",
+                    )
+                ]
+            ]
+        ),
+    )
 
 
-@app.on_message(filters.command(["help"]) & filters.private)
+@app.on_message(filters.command(["help", "start"]) & filters.private)
 async def help_private(_, message):
     await message.reply_text(
-        help_pannel(),
-        reply_markup=InlineKeyboardMarkup(
-            [
-                *help_buttons(),
-                [
-                    InlineKeyboardButton("🔙 Back", callback_data="close_help"),
-                ],
-            ]
-        ),
-    )
-
-
-@app.on_callback_query(filters.regex(r"help_callback"))
-async def help_callback(_, callback_query):
-    data = callback_query.data
-    if data == "help_callback":
-        await callback_query.message.edit_text(
-            help_pannel(),
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    *help_buttons(),
-                    [
-                        InlineKeyboardButton("🔙 Back", callback_data="close_help"),
-                    ],
-                ]
-            ),
-        )
-
-
-@app.on_callback_query(filters.regex(r"close_help"))
-async def close_help(_, callback_query):
-    await callback_query.message.delete()
-
-
-@app.on_callback_query(filters.regex(r"help_(?!back|home).*"))
-async def help_modules(_, callback_query):
-    module = callback_query.data.split("_", 1)[1]
-    help_text = database.get_help_text(module)
-
-    await callback_query.message.edit_text(
-        help_text,
-        reply_markup=InlineKeyboardMarkup(help_back_markup(module)),
+        HELP_TEXT,
         disable_web_page_preview=True,
-    )
-
-
-@app.on_callback_query(filters.regex(r"help_back_"))
-async def help_back(_, callback_query):
-    module = callback_query.data.split("_", 2)[2]
-    await callback_query.message.edit_text(
-        help_pannel(),
         reply_markup=InlineKeyboardMarkup(
             [
-                *help_buttons(),
-                [
-                    InlineKeyboardButton("🔙 Back", callback_data="close_help"),
-                ],
-            ]
-        ),
-    )
-
-
-@app.on_callback_query(filters.regex(r"help_home"))
-async def help_home(_, callback_query):
-    await callback_query.message.edit_text(
-        help_pannel(),
-        reply_markup=InlineKeyboardMarkup(
-            [
-                *help_buttons(),
-                [
-                    InlineKeyboardButton("🔙 Back", callback_data="close_help"),
-                ],
-            ]
-        ),
-    )
-
-
-@app.on_callback_query(filters.regex(r"help_menu"))
-async def help_menu(_, callback_query):
-    await callback_query.message.edit_text(
-        private_help_panel(),
-        reply_markup=InlineKeyboardMarkup(
-            [
-                *private_help_panel(),
-                [
-                    InlineKeyboardButton("🔙 Back", callback_data="help_home"),
-                ],
-            ]
-        ),
-    )
-
-
-@app.on_callback_query(filters.regex(r"help_tutorial"))
-async def help_tutorial(_, callback_query):
-    text = (
-        "📚 **Tutorial**\n\n"
-        "➤ Add the bot to your group and make it admin.\n"
-        "➤ Start a voice chat.\n"
-        "➤ Use `/play` to play music.\n"
-        "➤ Use `/vplay` to stream video.\n\n"
-        f"Need support? Join: {SUPPORT_GROUP}"
-    )
-    await callback_query.message.edit_text(
-        text,
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [InlineKeyboardButton("🔙 Back", callback_data="help_home")],
-            ]
-        ),
-        disable_web_page_preview=True,
-    )
-
-
-@app.on_callback_query(filters.regex(r"help_commands"))
-async def help_commands(_, callback_query):
-    await callback_query.message.edit_text(
-        first_page(),
-        reply_markup=InlineKeyboardMarkup(
-            [
-                *paginate_modules(0, help_pannel()),
-                [InlineKeyboardButton("🔙 Back", callback_data="help_home")],
-            ]
-        ),
-        disable_web_page_preview=True,
-    )
-
-
-@app.on_callback_query(filters.regex(r"help_next\((.+)\)"))
-async def help_next(_, callback_query):
-    page = int(callback_query.matches[0].group(1))
-    await callback_query.message.edit_reply_markup(
-        InlineKeyboardMarkup(
-            [
-                *paginate_modules(page, help_pannel()),
-                [InlineKeyboardButton("🔙 Back", callback_data="help_home")],
+                [InlineKeyboardButton("➕ Gruba Ekle", url=f"https://t.me/{(await _bot_username())}?startgroup=true")]
             ]
         )
+        if await _bot_username()
+        else None,
     )
-
-
-@app.on_callback_query(filters.regex(r"help_prev\((.+)\)"))
-async def help_prev(_, callback_query):
-    page = int(callback_query.matches[0].group(1))
-    await callback_query.message.edit_reply_markup(
-        InlineKeyboardMarkup(
-            [
-                *paginate_modules(page, help_pannel()),
-                [InlineKeyboardButton("🔙 Back", callback_data="help_home")],
-            ]
-        )
-    )
-
-
-@app.on_callback_query(filters.regex(r"help_close"))
-async def help_close(_, callback_query):
-    await callback_query.message.delete()
