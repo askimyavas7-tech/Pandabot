@@ -13,24 +13,17 @@ from pyrogram.types import (
 )
 
 from Pandamusic import app
-from Pandamusic.utils.database import db
+from Pandamusic.core.mongo import mongodb
 
 log = getLogger(__name__)
 
-# DB collection (motor/pymongo wrapper nasıl ise ona göre çalışır)
-try:
-    wlcm = db.welcome
-except Exception:
-    from Pandamusic.utils.database import welcome as wlcm  # fallback
+# ✅ Welcome collection
+# bazı projelerde collection adı welcome / welcomes olabilir.
+wlcm = getattr(mongodb, "welcome", None) or getattr(mongodb, "welcomes", None) or mongodb.welcome
 
 
 class temp:
-    ME = None
-    CURRENT = 2
-    CANCEL = False
     MELCOW = {}
-    U_NAME = None
-    B_NAME = None
 
 
 def circle(pfp, size=(450, 450)):
@@ -46,13 +39,6 @@ def circle(pfp, size=(450, 450)):
 
 
 def welcomepic(pic, user, chat, uid, uname):
-    """
-    pic: local path
-    user: first_name
-    chat: chat title
-    uid: int user id
-    uname: username or None
-    """
     background = Image.open("Pandamusic/assets/welcome.png").convert("RGBA")
     pfp = Image.open(pic).convert("RGBA")
     pfp = circle(pfp).resize((450, 450))
@@ -78,6 +64,14 @@ def welcomepic(pic, user, chat, uid, uname):
     return out
 
 
+async def _bot_username():
+    try:
+        me = await app.get_me()
+        return me.username
+    except Exception:
+        return None
+
+
 @app.on_message(filters.command("welcome") & filters.group)
 async def auto_state(_, message: Message):
     usage = "<b>❖ ᴜsᴀɢᴇ ➥</b> /welcome [on|off]"
@@ -85,7 +79,6 @@ async def auto_state(_, message: Message):
         return await message.reply_text(usage)
 
     chat_id = message.chat.id
-
     try:
         member = await app.get_chat_member(chat_id, message.from_user.id)
     except Exception:
@@ -119,30 +112,23 @@ async def auto_state(_, message: Message):
 async def greet_group(_, member: ChatMemberUpdated):
     chat_id = member.chat.id
     A = await wlcm.find_one({"chat_id": chat_id})
-
-    # disabled ise çık
     if A and A.get("disabled", False):
         return
 
-    # yeni kullanıcı değilse çık
     if not member.new_chat_member:
         return
-
-    # ayrılan/banlanan/restricted ise çık
     if member.new_chat_member.status in {"banned", "left", "restricted"}:
         return
 
     user = member.new_chat_member.user
 
-    # Eski welcome mesajını sil
     key = f"welcome-{chat_id}"
     if temp.MELCOW.get(key) is not None:
         try:
             await temp.MELCOW[key].delete()
-        except Exception as e:
-            log.error(e)
+        except Exception:
+            pass
 
-    # PP indir
     pic_path = None
     try:
         if user.photo:
@@ -155,7 +141,6 @@ async def greet_group(_, member: ChatMemberUpdated):
     if not pic_path:
         pic_path = "Pandamusic/assets/upic.png"
 
-    # Görsel üret
     try:
         welcomeimg = welcomepic(
             pic_path,
@@ -168,16 +153,9 @@ async def greet_group(_, member: ChatMemberUpdated):
         log.error(e)
         welcomeimg = None
 
-    # Bot username güvenli şekilde al (bazı projelerde app.username yok)
-    try:
-        me = await app.get_me()
-        bot_username = me.username
-    except Exception:
-        bot_username = None
-
-    add_btn = None
-    if bot_username:
-        add_btn = InlineKeyboardMarkup(
+    bot_username = await _bot_username()
+    add_btn = (
+        InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
@@ -187,14 +165,15 @@ async def greet_group(_, member: ChatMemberUpdated):
                 ]
             ]
         )
+        if bot_username
+        else None
+    )
 
     caption = f"""🌟 <b>ᴡᴇʟᴄᴏᴍᴇ {user.mention}!</b>
 
 📋 <b>ɢʀᴏᴜᴘ:</b> {member.chat.title}
 🆔 <b>ʏᴏᴜʀ ɪᴅ:</b> <code>{user.id}</code>
-👤 <b>ᴜsᴇʀɴᴀᴍᴇ:</b> @{user.username if user.username else "ɴᴏᴛ sᴇᴛ"}
-
-<b><u>ʜᴏᴘᴇ ʏᴏᴜ ғɪɴᴅ ɢᴏᴏᴅ ᴠɪʙᴇs, ɴᴇᴡ ғʀɪᴇɴᴅs, ᴀɴᴅ ʟᴏᴛs ᴏғ ғᴜɴ ʜᴇʀᴇ!</u> 🌟</b>"""
+👤 <b>ᴜsᴇʀɴᴀᴍᴇ:</b> @{user.username if user.username else "ɴᴏᴛ sᴇᴛ"}"""
 
     try:
         if welcomeimg:
@@ -213,7 +192,6 @@ async def greet_group(_, member: ChatMemberUpdated):
     except Exception as e:
         log.error(e)
 
-    # temizlik
     try:
         if welcomeimg and os.path.exists(welcomeimg):
             os.remove(welcomeimg)
